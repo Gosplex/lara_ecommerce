@@ -33,13 +33,13 @@
             </a>
             <div class="collapse" id="ui-basics">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Add Category</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">View Category</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products/create') }}">Add Product</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products') }}">View Products</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="{{url('admin/brands')}}">
               <i class="mdi mdi-circle-double menu-icon"></i>
               <span class="menu-title">Brand</span>
             </a>

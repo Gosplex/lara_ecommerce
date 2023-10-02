@@ -22,10 +22,27 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 
+    <style>
+        .loader {
+            position: fixed;
+            z-index: 99999;
+            background: #ffffff;
+            padding-top: 19%;
+            padding-left: 42%;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+
     @livewireStyles
 </head>
 
 <body>
+    <div class="loader">
+        <img src="{{ asset('images\loader.svg') }}">
+    </div>
     <div class="container-scroller">
         @include('layouts.inc.admin.navbar')
         <div class="container-fluid page-body-wrapper">
@@ -57,6 +74,16 @@
             <script src="{{ asset('admin/js/jquery.dataTables.js') }}"></script>
             <script src="{{ asset('admin/js/dataTables.bootstrap4.js') }}"></script>
             <!-- End custom js for this page-->
+
+
+            {{-- Loading Spinner --}}
+            <script>
+                $(function() {
+                    setTimeout(() => {
+                        $('.loader').fadeOut(800);
+                    }, 2000);
+                })
+            </script>
 
 
             @livewireScripts

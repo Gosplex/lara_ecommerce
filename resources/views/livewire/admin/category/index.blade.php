@@ -1,6 +1,7 @@
 <div>
 
-    <div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,7 +64,12 @@
                                                             <tr>
                                                                 <td>{{ $category->id }}</td>
                                                                 <td>{{ $category->name }}</td>
-                                                                <td>{{ $category->status == '1' ? 'Visible' : 'Hidden' }}
+                                                                <td>
+                                                                    @if ($category->status == '1')
+                                                                        <span class="badge bg-success">Visible</span>
+                                                                    @else
+                                                                        <span class="badge bg-danger">Hidden</span>
+                                                                    @endif
                                                                 </td>
                                                                 <td>
                                                                     <img src="{{ asset('uploads/category/' . $category->image) }}"

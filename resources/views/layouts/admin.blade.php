@@ -22,6 +22,10 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 
+    {{-- Font Awesome CDN --}}
+    <script src="https://kit.fontawesome.com/9d4976fd3b.js" crossorigin="anonymous"></script>
+
+
     <style>
         .loader {
             position: fixed;
@@ -32,6 +36,20 @@
             margin: 0 auto;
             width: 100%;
             height: 100%;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .close-img {
+            position: absolute;
+            top: -1px;
+            right: 15px;
+            font-size: 24px;
+            color: red;
+            cursor: pointer;
         }
     </style>
 

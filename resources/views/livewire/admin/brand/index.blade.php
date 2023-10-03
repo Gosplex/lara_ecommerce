@@ -23,20 +23,17 @@
                             </thead>
                             <tbody>
                                 @foreach ($brands as $brand)
-                                    @if ($brand->status == 1)
-                                        @php
-                                            $brand->status = 'Active';
-                                        @endphp
-                                    @else
-                                        @php
-                                            $brand->status = 'Inactive';
-                                        @endphp
-                                    @endif
                                     <tr>
                                         <td>{{ $brand->id }}</td>
                                         <td>{{ $brand->name }}</td>
                                         <td>{{ $brand->slug }}</td>
-                                        <td>{{ $brand->status }}</td>
+                                        <td>
+                                            @if ($brand->status == '1')
+                                                <span class="badge bg-success">Available</span>
+                                            @else
+                                                <span class="badge bg-danger">Unavailable</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="#" wire:click="editBrand({{ $brand->id }})"
                                                 data-bs-toggle="modal" data-bs-target="#updateBrandModal"

@@ -23,20 +23,20 @@ class ProductFormRequest extends FormRequest
     {
         return [
             'category_id' => 'required|integer',
-            'brand' => 'required|integer',
+            'brand' => 'required',
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:products,slug',
+            'slug' => 'required|string|max:255',
             'small_description' => 'required|string|max:255',
             'description' => 'required|string',
             'original_price' => 'required|numeric',
             'selling_price' => 'required|numeric',
             'quantity' => 'required|integer',
-            'trending' => 'required|boolean',
-            'status' => 'required|boolean',
+            'trending' => 'nullable',
+            'status' => 'nullable',
             'meta_title' => 'required|string|max:255',
             'meta_description' => 'required|string|max:255',
             'meta_keyword' => 'required|string|max:255',
-            'image' => 'required|image',
+            'image' => 'nullable',
 
         ];
     }

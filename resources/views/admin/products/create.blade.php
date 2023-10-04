@@ -53,6 +53,11 @@
                                     aria-selected="false">Upload Product
                                     Image</button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="color-tab" data-bs-toggle="tab"
+                                    data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color"
+                                    aria-selected="false"> Product Color</button>
+                            </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade border p-3 show active" id="home-tab-pane" role="tabpanel"
@@ -91,7 +96,8 @@
                                 </div>
                             </div>
                             {{-- SEOTAGS --}}
-                            <div class="tab-pane fade border p-3" id="seotag-tab-pane" role="tabpanel" aria-labelledby="seotag-tab">
+                            <div class="tab-pane fade border p-3" id="seotag-tab-pane" role="tabpanel"
+                                aria-labelledby="seotag-tab">
                                 <div class="mb-3 mt-3">
                                     <label>Meta Title</label>
                                     <input type="text" name="meta_title" class="form-control">
@@ -148,10 +154,35 @@
                                 </div>
                             </div>
                             {{-- IMAGE TAG --}}
-                            <div class="tab-pane fade border p-3" id="image-tab-pane" role="tabpanel" aria-labelledby="image-tab">
+                            <div class="tab-pane fade border p-3" id="image-tab-pane" role="tabpanel"
+                                aria-labelledby="image-tab">
                                 <div class="mb-3 mt-3">
                                     <label>Upload Product Images</label>
                                     <input name="image[]" multiple type="file" class="form-control">
+                                </div>
+                            </div>
+                            {{-- PRODUCT COLOR --}}
+                            <div class="tab-pane fade border p-3" id="color-tab-pane" role="tabpanel"
+                                aria-labelledby="color-tab">
+                                <div class="mb-3 mt-3">
+                                    <label>Choose Product Color</label>
+                                    <div class="row">
+                                        @forelse ($colors as $color)
+                                            <div class="col-md-6 mt-3">
+                                                <div class="p-2 border">
+                                                    <b>Color:</b> <input name="colors[{{ $color->id }}]"
+                                                        value="{{ $color->id }}" type="checkbox"> {{ $color->name }}
+                                                    <br>
+                                                    <b>Quantity:</b> <input type="number" name="colorquantity[{{ $color->id }}]"
+                                                        style="border: 1px solid; width: 70px;">
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <div class="col-md-12">
+                                                <h4 class="text-danger">No Color Found</h4>
+                                            </div>
+                                        @endforelse
+                                    </div>
                                 </div>
                             </div>
                         </div>

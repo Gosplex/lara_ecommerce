@@ -11,9 +11,9 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h3 class="mt-1">Products
-                        <a href="{{ url('admin/products/create') }}" class="btn btn-primary btn-sm float-end text-white">
-                            Add Products
+                    <h3 class="mt-1">Colors Lists
+                        <a href="{{ url('admin/colors/create') }}" class="btn btn-primary btn-sm float-end text-white">
+                            Add Color
                         </a>
                         </h4>
                 </div>
@@ -23,44 +23,33 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Category</th>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th>Color Name</th>
+                                    <th>Color Code</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($products as $product)
+                                @foreach ($colors as $color)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->category->name }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->selling_price }}</td>
-                                        <td>{{ $product->quantity }}</td>
+                                        <td>{{ $color->id }}</td>
+                                        <td>{{ $color->name }}</td>
+                                        <td>{{ $color->code }}</td>
                                         <td>
-                                            @if ($product->status == '1')
+                                            @if ($color->status == '1')
                                                 <span class="badge bg-success">Available</span>
                                             @else
                                                 <span class="badge bg-danger">Unavailable</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/products/edit/' . $product->id) }}"
-                                                class="btn btn-primary text-white btn-sm">Edit</a>
-                                            <a href="{{ url('admin/products/delete/' . $product->id) }}"
-                                                class="btn btn-danger text-white btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete product ?')">
-                                                Delete
-                                            </a>
+                                            <a href="{{ url('admin/colors/edit/' . $color->id) }}"
+                                                class="btn btn-primary text-white">Edit</a>
+                                            <a href="{{ url('admin/colors/delete/' . $color->id) }}"
+                                                class="btn btn-danger text-white" onclick="return confirm('Are you sure you want to delete record ?')">Delete</a>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7">No Product Available</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

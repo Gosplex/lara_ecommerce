@@ -61,6 +61,11 @@
                                     aria-selected="false">Upload Product
                                     Image</button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="color-tab" data-bs-toggle="tab"
+                                    data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color"
+                                    aria-selected="false">Produt Colors</button>
+                            </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade border p-3 show active" id="home-tab-pane" role="tabpanel"
@@ -88,7 +93,8 @@
                                     <select name="brand" class="form-control">
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->name }}"
-                                                {{ $brand->name == $product->brand ? 'selected' : '' }}>{{ $brand->name }}
+                                                {{ $brand->name == $product->brand ? 'selected' : '' }}>
+                                                {{ $brand->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -187,7 +193,8 @@
                                                     <div class="image-container">
                                                         <img src="{{ asset($image->image) }}"
                                                             style="height: 80px; width: 80px;" class="me-4 border">
-                                                        <a href="{{url('admin/product-image/'. $image->id. '/delete')}}">
+                                                        <a
+                                                            href="{{ url('admin/product-image/' . $image->id . '/delete') }}">
                                                             <i class="fa-regular fa-circle-xmark d-block close-img"></i>
                                                         </a>
                                                     </div>
@@ -199,12 +206,104 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary text-white mt-5 float-end">Update</button>
-                        </div>
+                            {{-- COLOR TAG --}}
+                            <div class="tab-pane fade border p-3" id="color-tab-pane" role="tabpanel"
+                                aria-labelledby="color-tab">
+                                <div class="mb-3 mt-3">
+                                    <h4>Choose Product Color</h4>
+                                    <div class="row">
+                                        @forelse ($colors as $color)
+                                            <div class="col-md-6 mt-3">
+                                                <div class="p-2 border">
+                                                    <b>Color:</b> <input name="colors[{{ $color->id }}]"
+                                                        value="{{ $color->id }}" type="checkbox"> {{ $color->name }}
+                                                    <br>
+                                                    <b>Quantity:</b> <input type="number"
+                                                        name="colorquantity[{{ $color->id }}]"
+                                                        style="border: 1px solid; width: 70px;">
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <div class="col-md-12">
+                                                <h4 class="text-danger">No Color Found</h4>
+                                            </div>
+                                        @endforelse
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <h4 class="mt-3">Existing Product Colors</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="table-1">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Color Name</th>
+                                                <th class="text-center">Color Quantity</th>
+                                                <th class="text-center">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($product->productColors as $prodColor)
+                                                <tr class="prod-color-tr">
+                                                    <td>
+                                                        @if ($prodColor->color->name)
+                                                            {{ $prodColor->color->name }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group mb-3" style="width: 150px">
+                                                            <input type="text" value="{{ $prodColor->quantity }}"
+                                                                class="productColorQuantity form-control form-control-sm">
+                                                            <button type="button" value="{{ $prodColor->id }}"
+                                                                class="updateProductColorBtn btn btn-primary btn-sm text-white">Update</button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" value="{{ $prodColor->id }}"
+                                                            class="deleteProductColorBtn btn btn-danger btn-sm text-white">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <button type="submit"
+                                        class="btn btn-primary text-white mt-5 float-end">Update</button>
+                                </div>
+                            </div>
                     </form>
                 </div>
             </div>
         </div>
+    @endsection
+
+
+
+    @section('scripts')
+        <script>
+            $(document).ready(function(params) {
+                $(document).on('click', '.updateProductColorBtn', function(params) {
+                    var id = $(this).val();
+                    var quantity = $(this).parent().find('.productColorQuantity').val();
+                    $.ajax({
+                        url: "{{ url('admin/product-color-update') }}",
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            id: id,
+                            quantity: quantity
+                        },
+                        success: function(response) {
+                            if (response.status) {
+                                alert(response.msg);
+                            } else {
+                                alert(response.msg);
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
     @endsection

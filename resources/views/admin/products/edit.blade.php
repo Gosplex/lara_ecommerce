@@ -283,24 +283,48 @@
 
     @section('scripts')
         <script>
-            $(document).ready(function(params) {
-                $(document).on('click', '.updateProductColorBtn', function(params) {
+            $(document).ready(function() {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $(document).on('click', '.updateProductColorBtn', function() {
+                    var product_id = '{{ $product->id }}'
                     var id = $(this).val();
-                    var quantity = $(this).parent().find('.productColorQuantity').val();
+                    var quantity = $(this).closest('.prod-color-tr').find('.productColorQuantity').val();
+                    if (quantity == '' || quantity == null) {
+                        alert('Please Enter Quantity');
+                        return false;
+                    }
+
+                    var data = {
+                        'product_id': product_id,
+                        'qty': quantity,
+                    }
                     $.ajax({
-                        url: "{{ url('admin/product-color-update') }}",
+                        url: "/admin/product-color-update/" + id,
                         type: "POST",
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                            id: id,
-                            quantity: quantity
-                        },
+                        data: data,
                         success: function(response) {
-                            if (response.status) {
-                                alert(response.msg);
-                            } else {
-                                alert(response.msg);
-                            }
+                            alert(response.message);
+                        }
+                    });
+                });
+
+                $(document).on('click', '.deleteProductColorBtn', function() {
+                    var id = $(this).val();
+                    var thisClick = $(this);
+
+
+                    $.ajax({
+                        url: "/admin/product-color-delete/" + id,
+                        type: "GET",
+                        success: function(response) {
+                            thisClick.closest('.prod-color-tr').remove();
+                            alert(response.message)
                         }
                     });
                 });

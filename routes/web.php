@@ -46,6 +46,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('/products/{product}', 'update')->name('admin.products.update');
         Route::get('/product-image/{product_image_id}/delete', 'destroyImage')->name('admin.products.destroyImage');
         Route::get('/products/delete/{product}', 'destroy')->name('admin.products.destroy');
+        Route::post('/product-color-update/{id}', 'updateProductColorQty')->name('admin.products.updateProductColorQty');
+        Route::get('/product-color-delete/{id}', 'destroyProductColor')->name('admin.products.destroyProductColor');
     });
 
     // Color Routes

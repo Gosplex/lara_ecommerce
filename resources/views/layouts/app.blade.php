@@ -13,9 +13,20 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    {{-- Title  --}}
+    <title>@yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    {{-- Carousel CDN --}}
+    <link rel="stylesheet" href="{{ asset('assets\css\owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="asset('assets\css\owl.theme.default.min.css')">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('assets\css\animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets\css\style.css') }}">
 
     @livewireStyles
 </head>
@@ -88,6 +99,12 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{asset('assets\js\jquery.min.js')}}"></script>
+    <script src="{{asset('assets\js\popper.js')}}"></script>
+    <script src="{{asset('assets\js\bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets\js\owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets\js\main.js')}}"></script>
 
 
     @livewireScripts

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Home\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [App\Http\Controllers\Home\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -58,6 +61,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/colors/edit/{color}', 'edit')->name('admin.colors.edit');
         Route::put('/colors/{color}', 'update')->name('admin.colors.update');
         Route::get('/colors/delete/{color}', 'destroy')->name('admin.colors.destroy');
+    });
+
+    // Slider Routes
+    Route::controller(App\Http\Controllers\Admin\SliderController::class)->group(function () {
+        Route::get('/sliders', 'index')->name('admin.sliders');
+        Route::get('/sliders/create', 'create')->name('admin.sliders.create');
+        Route::post('/sliders/create', 'store')->name('admin.sliders.store');
+        Route::get('/sliders/edit/{slider}', 'edit')->name('admin.sliders.edit');
+        Route::put('/sliders/{slider}', 'update')->name('admin.sliders.update');
+        Route::get('/sliders/delete/{slider}', 'destroy')->name('admin.sliders.destroy');
     });
 
 

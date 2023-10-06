@@ -15,11 +15,9 @@ use App\Http\Controllers\Home\HomeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', [App\Http\Controllers\Home\HomeController::class, 'index'])->name('home');
+Route::get('/collections', [App\Http\Controllers\Home\HomeController::class, 'categories'])->name('collections');
 
 Auth::routes();
 

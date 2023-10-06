@@ -13,4 +13,9 @@ class HomeController extends Controller
         $sliders = Slider::where('status', 1)->get();
         return view('home.index', compact('sliders'));
     }
+
+    public function categories()
+    {
+        return view('home.collections.category.index');
+    }
 }

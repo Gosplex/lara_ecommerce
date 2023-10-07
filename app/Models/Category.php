@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
@@ -24,5 +25,10 @@ class Category extends Model
 
     function products()  {
         return $this->hasMany(Product::class, 'category_id', 'id');
+    }
+
+    function brands()
+    {
+        return $this->hasMany(Brand::class, 'category_id', 'id')->where('status', '1');
     }
 }

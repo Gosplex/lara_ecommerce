@@ -15,14 +15,21 @@ use App\Http\Controllers\Home\HomeController;
 |
 */
 
-
-Route::get('/', [App\Http\Controllers\Home\HomeController::class, 'index'])->name('home');
-Route::get('/collections', [App\Http\Controllers\Home\HomeController::class, 'categories'])->name('collections');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+// Home Routes
+
+Route::controller(App\Http\Controllers\Home\HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('/collections', 'categories')->name('collections');
+    Route::get('/collections/{category}', 'products')->name('products');
+});
+
+
+// Admin Routes
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 

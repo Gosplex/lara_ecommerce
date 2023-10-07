@@ -90,6 +90,6 @@ class CategoryController extends Controller
         $category->update();
 
 
-        return redirect()->route('admin.category')->with('success', 'category deleted successfully');
+        return redirect()->route('admin.category')->with('success', 'category updated successfully');
     }
 }

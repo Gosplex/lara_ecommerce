@@ -27,6 +27,7 @@
 
 
     <style>
+        /* Page Loader GIF */
         .loader {
             position: fixed;
             z-index: 99999;
@@ -36,20 +37,6 @@
             margin: 0 auto;
             width: 100%;
             height: 100%;
-        }
-
-        .image-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .close-img {
-            position: absolute;
-            top: -1px;
-            right: 15px;
-            font-size: 24px;
-            color: red;
-            cursor: pointer;
         }
     </style>
 

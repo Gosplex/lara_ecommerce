@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Brand Name</th>
+                                    <th>Category</th>
                                     <th>Brand Slug</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -26,6 +27,7 @@
                                     <tr>
                                         <td>{{ $brand->id }}</td>
                                         <td>{{ $brand->name }}</td>
+                                        <td>{{ $brand->category->name }}</td>
                                         <td>{{ $brand->slug }}</td>
                                         <td>
                                             @if ($brand->status == '1')

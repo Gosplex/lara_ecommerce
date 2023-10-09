@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary text-white float-end">Edit Product</button>
+                            <button type="submit" class="btn btn-primary text-white float-end">Edit Category</button>
                         </div>
                     </form>
                 </div>

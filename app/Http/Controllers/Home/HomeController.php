@@ -31,4 +31,15 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+
+    public function productView(string $category_slug, string $product_slug)
+    {
+        $category = Category::where('slug', $category_slug)->first();
+        $product = $category->products()->where('slug', $product_slug)->where('status', '1')->first();
+        if ($product) {
+            return view('home.collections.product.view', compact('product', 'category'));
+        } else {
+            return redirect()->back();
+        }
+    }
 }

@@ -26,6 +26,8 @@ Route::controller(App\Http\Controllers\Home\HomeController::class)->group(functi
     Route::get('/', 'index')->name('home');
     Route::get('/collections', 'categories')->name('collections');
     Route::get('/collections/{category}', 'products')->name('products');
+    Route::get('/collections/{category}/{product}', 'productView')->name('products');
+
 });
 
 

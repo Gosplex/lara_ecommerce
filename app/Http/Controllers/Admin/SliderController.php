@@ -44,7 +44,7 @@ class SliderController extends Controller
 
 
 
-        return redirect()->route('admin.sliders')->with('success', 'Slider created successfully.');
+        return redirect('admin/sliders')->with('success', 'Slider created successfully.');
     }
 
     public function edit(Slider $slider)

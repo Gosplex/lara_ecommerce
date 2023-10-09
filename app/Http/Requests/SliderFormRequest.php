@@ -22,9 +22,9 @@ class SliderFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255|unique:sliders|string',
+            'title' => 'required|string',
             'description' => 'required|max:800|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'required',
             'status' => 'nullable',
         ];
     }

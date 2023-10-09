@@ -13,16 +13,28 @@ class View extends Component
     {
         if (Auth::check()) {
             if (Wishlists::where('user_id', Auth::user()->id)->where('product_id', $productId)->exists()) {
-                session()->flash('error', 'Product already added to wishlist');
+                $this->dispatch('alert', [
+                    'text' => 'Product already added to wishlist',
+                    'type' => 'warning',
+                    'status' => 409
+                ]);
                 return false;
             }
             Wishlists::create([
                 'user_id' => Auth::user()->id,
                 'product_id' => $productId
             ]);
-            session()->flash('success', 'Product added to wishlist');
+            $this->dispatch('alert', [
+                'text' => 'Product added to wishlist',
+                'type' => 'info',
+                'status' => 200
+            ]);
         } else {
-            session()->flash('error', 'Please login to add product to wishlist');
+            $this->dispatch('alert', [
+                'text' => 'Please login to add product to wishlist',
+                'type' => 'error',
+                'status' => 401
+            ]);
             return false;
         }
     }

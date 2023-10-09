@@ -27,6 +27,12 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets\css\style.css') }}">
 
+    {{-- Alertify --}}
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
 
     @livewireStyles
 </head>
@@ -44,7 +50,16 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets\js\main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('alert', event => {
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.notify(event.detail.text, event.detail.type);
+            });
+        });
+    </script>
 
 
     @livewireScripts

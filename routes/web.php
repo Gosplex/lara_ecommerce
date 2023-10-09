@@ -27,7 +27,12 @@ Route::controller(App\Http\Controllers\Home\HomeController::class)->group(functi
     Route::get('/collections', 'categories')->name('collections');
     Route::get('/collections/{category}', 'products')->name('products');
     Route::get('/collections/{category}/{product}', 'productView')->name('products');
+});
 
+// Wishlist Routes
+Route::controller(App\Http\Controllers\Home\WishlistController::class)->group(function () {
+    Route::get('/wishlist', 'index')->name('wishlist');
+    Route::get('/wishlist/{product}', 'delete')->name('wishlist.delete');
 });
 
 

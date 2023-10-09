@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url('wishlist') }}">
                                 <i class="fa fa-heart"></i> Wishlist (0)
                             </a>
                         </li>
@@ -50,7 +50,7 @@
                                     <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-heart"></i> My Wishlist</a>
+                                    <li><a class="dropdown-item" href="{{url('wishlist')}}"><i class="fa fa-heart"></i> My Wishlist</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i> My
                                             Cart</a></li>
@@ -86,22 +86,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/')}}">Home</a>
+                        <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/collections')}}">All Categories</a>
+                        <a class="nav-link" href="{{ url('/collections') }}">All Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/new-arrivals')}}">New Arrivals</a>
+                        <a class="nav-link" href="{{ url('/new-arrivals') }}">New Arrivals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/featured-products')}}">Featured Products</a>
+                        <a class="nav-link" href="{{ url('/featured-products') }}">Featured Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/electronics')}}">Electronics</a>
+                        <a class="nav-link" href="{{ url('/electronics') }}">Electronics</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/fashions')}}">Fashions</a>
+                        <a class="nav-link" href="{{ url('/fashions') }}">Fashions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Accessories</a>

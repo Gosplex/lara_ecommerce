@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +28,16 @@ Route::controller(App\Http\Controllers\Home\HomeController::class)->group(functi
     Route::get('/', 'index')->name('home');
     Route::get('/collections', 'categories')->name('collections');
     Route::get('/collections/{category}', 'products')->name('products');
-    Route::get('/collections/{category}/{product}', 'productView')->name('products');
+    Route::get('/collections/{category}/{product}', 'productView')->name('productView');
 });
 
-// Wishlist Routes
-Route::controller(App\Http\Controllers\Home\WishlistController::class)->group(function () {
-    Route::get('/wishlist', 'index')->name('wishlist');
-    Route::get('/wishlist/{product}', 'delete')->name('wishlist.delete');
+
+// Authenticated User Routes
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::get('/wishlist/{product}', [App\Http\Controllers\Home\WishlistController::class, 'delete'])->name('wishlist.delete');
+    Route::get('/cart', [App\Http\Controllers\Home\CartController::class, 'index'])->name('cart.index');
 });
 
 

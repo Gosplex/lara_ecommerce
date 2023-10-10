@@ -18,6 +18,6 @@ class WishlistController extends Controller
         $wishlist = Wishlists::where('user_id', auth()->user()->id)->where('product_id', $product)->first();
         $wishlist->delete();
         session()->flash('success', 'Product removed from wishlist successfully.');
-        return redirect()->route('wishlist');
+        return redirect('/wishlist');
     }
 }

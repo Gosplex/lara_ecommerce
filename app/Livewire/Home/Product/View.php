@@ -2,13 +2,17 @@
 
 namespace App\Livewire\Home\Product;
 
+use App\Models\Cart;
 use App\Models\Product;
-use App\Models\Wishlists;
 use Livewire\Component;
+use App\Models\Wishlists;
 use Illuminate\Support\Facades\Auth;
 
 class View extends Component
 {
+
+    public $product, $category, $quantityCount = 1;
+
     function addToWishlist($productId)
     {
         if (Auth::check()) {
@@ -38,7 +42,82 @@ class View extends Component
             return false;
         }
     }
-    public $product, $category;
+
+    function decrementQuantity()
+    {
+        if ($this->quantityCount <= 1) {
+            $this->quantityCount = 1;
+            return false;
+        } else {
+            $this->quantityCount--;
+        }
+    }
+
+    function incrementQuantity()
+    {
+        if ($this->quantityCount >= 10) {
+            $this->quantityCount = 10;
+            return false;
+        } else {
+            $this->quantityCount++;
+        }
+    }
+
+    function addToCart(int $productId)
+    {
+        if (Auth::check()) {
+            $product = Product::find($productId);
+            if(Cart::where('user_id', Auth::user()->id)->where('product_id', $productId)->exists()) {
+                $this->dispatch('alert', [
+                    'text' => 'Product already added to cart',
+                    'type' => 'warning',
+                    'status' => 409
+                ]);
+                return false;
+            }
+            else {
+                if ($product->quantity < $this->quantityCount) {
+                    $this->dispatch('alert', [
+                        'text' => 'Product quantity is not available',
+                        'type' => 'warning',
+                        'status' => 409
+                    ]);
+                    return false;
+                }
+                $cart = session()->get('cart');
+                if (isset($cart[$productId])) {
+                    $cart[$productId]['quantity'] += $this->quantityCount;
+                    session()->put('cart', $cart);
+                    $this->dispatch('alert', [
+                        'text' => 'Product added to cart',
+                        'type' => 'info',
+                        'status' => 200
+                    ]);
+                    return true;
+                }
+                Cart::create([
+                    "user_id" => Auth::user()->id,
+                    "quantity" => $this->quantityCount,
+                    "product_id" => $productId,
+                ]);
+                session()->put('cart', $cart);
+                $this->dispatch('alert', [
+                    'text' => 'Product added to cart',
+                    'type' => 'info',
+                    'status' => 200
+                ]);
+                return true;
+            }
+        } else {
+            $this->dispatch('alert', [
+                'text' => 'Please login to add product to cart',
+                'type' => 'error',
+                'status' => 401
+            ]);
+            return false;
+        }
+    }
+
     function mount($category, $product)
     {
         $this->product = $product;

@@ -106,8 +106,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>Description</label>
-                                    <input type="text" name="description" class="form-control"
-                                        value="{{ $product->description }}">
+                                    <textarea name="description" class="form-control" rows="3">{{ $product->description }}</textarea>
                                 </div>
                             </div>
                             {{-- SEOTAGS --}}

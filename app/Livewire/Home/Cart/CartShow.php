@@ -65,7 +65,7 @@ class CartShow extends Component
 
         if ($cartRemoveData) {
             $cartRemoveData->delete();
-            $this->emit('cartUpdated');
+            // $this->emit('cartUpdated');
             $this->dispatch('alert', [
                 'type' => 'success',
                 'message' => 'Item removed successfully!',

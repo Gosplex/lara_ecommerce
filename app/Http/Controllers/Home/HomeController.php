@@ -42,4 +42,9 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+
+    function thankYou()
+    {
+        return view('home.thank-you');
+    }
 }

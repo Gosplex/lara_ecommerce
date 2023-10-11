@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\WishlistController;
 
 /*
@@ -38,7 +39,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('/wishlist/{product}', [App\Http\Controllers\Home\WishlistController::class, 'delete'])->name('wishlist.delete');
     Route::get('/cart', [App\Http\Controllers\Home\CartController::class, 'index'])->name('cart.index');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('cart.index');
 });
+
+Route::get('/thank-you', [App\Http\Controllers\Home\HomeController::class, 'thankYou'])->name('thankYou');
 
 
 // Admin Routes

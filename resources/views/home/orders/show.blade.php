@@ -12,7 +12,7 @@
                     <div class="shadow bg-white p-3">
                         <h4 class="text-primary">
                             <i class="fa fa-shopping-cart"></i> My Order Details
-                            <a href="{{url('/orders')}}" class="btn btn-danger text-white btn-sm float-end">Back</a>
+                            <a href="{{ url('/orders') }}" class="btn btn-danger text-white btn-sm float-end">Back</a>
                         </h4>
 
                         <hr>
@@ -25,9 +25,17 @@
                                 <h6>Tracking ID/No: {{ $orders->tracking_no }}</h6>
                                 <h6>Order Created Date: {{ $orders->created_at->format('d-m-Y h:i A') }}</h6>
                                 <h6>Payment Mode: {{ $orders->payment_mode }}</h6>
-                                <h6 class="border mt-2 p-2 text-success">
-                                    Order Status Message: <span class="text-uppercase">{{ $orders->status_message }}</span>
-                                </h6>
+                                @if ($orders->status_message == 'cancelled')
+                                    <h6 class="border mt-2 p-2 text-danger">
+                                        Order Status Message: <span
+                                            class="text-uppercase">{{ $orders->status_message }}</span>
+                                    </h6>
+                                @else
+                                    <h6 class="border mt-2 p-2 text-success">
+                                        Order Status Message: <span
+                                            class="text-uppercase">{{ $orders->status_message }}</span>
+                                    </h6>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <h5>User Details</h5>
@@ -78,7 +86,8 @@
                                             </td>
                                             <td width="10%">₹{{ $orderItem->price }}</td>
                                             <td width="10%">{{ $orderItem->quantity }}</td>
-                                            <td width="10%" class="fw-bold">₹{{ $orderItem->price * $orderItem->quantity }}</td>
+                                            <td width="10%" class="fw-bold">
+                                                ₹{{ $orderItem->price * $orderItem->quantity }}</td>
                                             @php
                                                 $total += $orderItem->price * $orderItem->quantity;
                                             @endphp

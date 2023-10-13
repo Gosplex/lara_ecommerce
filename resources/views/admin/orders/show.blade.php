@@ -6,10 +6,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">{{ session('message') }}</div>
+                    @endif
                     <div class="shadow bg-white p-3">
                         <h4 class="text-primary">
                             <i class="fa fa-shopping-cart"></i> Customer's Order Details
-                            <a href="{{ url('admin/orders') }}" class="btn btn-danger text-white btn-sm float-end">Back</a>
+                            <a href="{{ url('admin/orders') }}"
+                                class="btn btn-danger text-white btn-sm float-end mx-1">Back</a>
+                            <a href="{{ url('admin/invoice/' . $orders->id . '/generate') }}"
+                                class="btn btn-primary text-white btn-sm float-end mx-1">Download Invoice</a>
+                            <a href="{{ url('admin/invoice/' . $orders->id) }}"
+                                class="btn btn-warning text-white btn-sm float-end mx-1" target="_blank">
+                                View Invoice
+                            </a>
                         </h4>
 
                         <hr>
@@ -22,9 +32,17 @@
                                 <h6>Tracking ID/No: {{ $orders->tracking_no }}</h6>
                                 <h6>Order Created Date: {{ $orders->created_at->format('d-m-Y h:i A') }}</h6>
                                 <h6>Payment Mode: {{ $orders->payment_mode }}</h6>
-                                <h6 class="border mt-2 p-2 text-success">
-                                    Order Status Message: <span class="text-uppercase">{{ $orders->status_message }}</span>
-                                </h6>
+                                @if ($orders->status_message == 'cancelled')
+                                    <h6 class="border mt-2 p-2 text-danger">
+                                        Order Status Message: <span
+                                            class="text-uppercase">{{ $orders->status_message }}</span>
+                                    </h6>
+                                @else
+                                    <h6 class="border mt-2 p-2 text-success">
+                                        Order Status Message: <span
+                                            class="text-uppercase">{{ $orders->status_message }}</span>
+                                    </h6>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <h5>User Details</h5>
@@ -88,6 +106,49 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 shadow bg-white ">
+                        <div class="card-body">
+                            <h4>Order Process (Order Status)</h4>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <form action="{{ url('admin/orders/' . $orders->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <label>Update Customer Order Status</label>
+                                        <div class="input-group">
+                                            <select name="order_status" class="form-select m-2">
+                                                <option value="">Select Order Status</option>
+                                                <option value="in progress"
+                                                    {{ Request::get('status') == 'in progress' ? 'selected' : '' }}>In
+                                                    Progress</option>
+                                                <option value="completed"
+                                                    {{ Request::get('status') == 'completed' ? 'selected' : '' }}>Completed
+                                                </option>
+                                                <option value="pending"
+                                                    {{ Request::get('status') == 'pending' ? 'selected' : '' }}>Pending
+                                                </option>
+                                                <option value="out for delivery"
+                                                    {{ Request::get('status') == 'out for delivery' ? 'selected' : '' }}>
+                                                    Out
+                                                    for delivery</option>
+                                                <option value="cancelled"
+                                                    {{ Request::get('status') == 'cancelled' ? 'selected' : '' }}>Cancelled
+                                                </option>
+                                            </select>
+                                            <button type="submit" class="btn btn-primary text-white">Update Status</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-7">
+                                    <br>
+                                    <h4 class="mt-3">Current Order Status: <span
+                                            class="text-uppercase">{{ $orders->status_message }}</span></h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

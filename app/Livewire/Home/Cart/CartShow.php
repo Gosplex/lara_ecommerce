@@ -21,7 +21,7 @@ class CartShow extends Component
                 return;
             } else {
                 $cartData->decrement('quantity');
-                session()->flash('success', 'Cart updated successfully!');
+                session()->set('success', 'Cart updated successfully!');
             }
         } else {
             session()->flash('error', 'Cart not found!');

@@ -6,13 +6,15 @@ use App\Models\Slider;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $sliders = Slider::where('status', 1)->get();
-        return view('home.index', compact('sliders'));
+        $trendingProducts = Product::where('trending', '1')->latest()->take(8)->get();
+        return view('home.index', compact('sliders', 'trendingProducts'));
     }
 
     public function categories()

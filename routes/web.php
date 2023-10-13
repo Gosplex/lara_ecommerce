@@ -100,7 +100,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::controller(App\Http\Controllers\Admin\OrdersController::class)->group(function () {
         Route::get('/orders', 'index')->name('admin.orders');
         Route::get('/orders/{order}', 'show')->name('admin.orders.show');
-        Route::get('/orders/delete/{order}', 'destroy')->name('admin.orders.destroy');
+        Route::put('/orders/{order}/', 'update')->name('admin.orders.update');
+        Route::get('/invoice/{order}/generate', 'generateInvoice')->name('admin.invoice.generateInvoice');
+        Route::get('/invoice/{order}', 'viewInvoice')->name('admin.invoice.viewInvoice');
     });
 
 

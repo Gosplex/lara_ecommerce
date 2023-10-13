@@ -19,7 +19,7 @@
                     <ul class="nav justify-content-end">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('cart')}}">
+                            <a class="nav-link" href="{{ url('cart') }}">
                                 <i class="fa fa-shopping-cart"></i> Cart (<livewire:home.cart.cart-count />)
                             </a>
                         </li>
@@ -48,11 +48,14 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a>
+                                    <li><a class="dropdown-item" href="{{ url('orders') }}"><i class="fa fa-list"></i> My
+                                            Orders</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{url('wishlist')}}"><i class="fa fa-heart"></i> My Wishlist</a>
+                                    <li><a class="dropdown-item" href="{{ url('wishlist') }}"><i class="fa fa-heart"></i> My
+                                            Wishlist</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i> My
+                                    <li><a class="dropdown-item" href="{{ url('cart') }}"><i
+                                                class="fa fa-shopping-cart"></i> My
                                             Cart</a></li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -61,7 +64,8 @@
                                             <i class="fa fa-sign-out"></i> {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     </li>

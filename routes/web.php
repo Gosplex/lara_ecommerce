@@ -39,7 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('/wishlist/{product}', [App\Http\Controllers\Home\WishlistController::class, 'delete'])->name('wishlist.delete');
     Route::get('/cart', [App\Http\Controllers\Home\CartController::class, 'index'])->name('cart.index');
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('cart.index');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/orders', [App\Http\Controllers\Home\OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{orderId}', [App\Http\Controllers\Home\OrderController::class, 'show'])->name('orders.show');
 });
 
 Route::get('/thank-you', [App\Http\Controllers\Home\HomeController::class, 'thankYou'])->name('thankYou');
@@ -93,6 +95,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('/sliders/{slider}', 'update')->name('admin.sliders.update');
         Route::get('/sliders/delete/{slider}', 'destroy')->name('admin.sliders.destroy');
     });
+
+    // Order Routes
+    Route::controller(App\Http\Controllers\Admin\OrdersController::class)->group(function () {
+        Route::get('/orders', 'index')->name('admin.orders');
+        Route::get('/orders/{order}', 'show')->name('admin.orders.show');
+        Route::get('/orders/delete/{order}', 'destroy')->name('admin.orders.destroy');
+    });
+
 
 
 

@@ -77,6 +77,7 @@ class CheckoutShow extends Component
                 'type' => 'success',
                 'message' => 'Order Placed Successfully!'
             ]);
+            return redirect('/thank-you');
         } else {
             $this->dispatch('alert', [
                 'type' => 'error',

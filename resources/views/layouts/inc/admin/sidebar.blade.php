@@ -7,9 +7,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="{{url('/admin/orders')}}">
                 <i class="mdi mdi-cash menu-icon"></i>
-                <span class="menu-title">Sales</span>
+                <span class="menu-title">Orders</span>
             </a>
         </li>
         <li class="nav-item">

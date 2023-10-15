@@ -3,12 +3,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
-                    <h5 class="brand-name">Majestic Stores</h5>
+                    <h5 class="brand-name">{{ $websiteSetting->website_name ?? 'Majestic Stores' }}</h5>
                 </div>
                 <div class="col-md-5 my-auto">
-                    <form role="search">
+                    <form role="search" action="{{ url('serach') }}" method="GET">
                         <div class="input-group">
-                            <input type="search" placeholder="Search your product" class="form-control" />
+                            <input type="search" name="search" value="{{ Request::get('search') }}"
+                                placeholder="Search your product" class="form-control" />
                             <button class="btn bg-white" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -47,11 +48,13 @@
                                     <i class="fa fa-user"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('profile') }}"><i class="fa fa-user"></i>
+                                            Profile</a></li>
                                     <li><a class="dropdown-item" href="{{ url('orders') }}"><i class="fa fa-list"></i> My
                                             Orders</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ url('wishlist') }}"><i class="fa fa-heart"></i> My
+                                    <li><a class="dropdown-item" href="{{ url('wishlist') }}"><i class="fa fa-heart"></i>
+                                            My
                                             Wishlist</a>
                                     </li>
                                     <li><a class="dropdown-item" href="{{ url('cart') }}"><i
@@ -61,7 +64,7 @@
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out"></i> {{ __('Logout') }}
+                                            <i class="fa-solid fa-power-off"></i> {{ __('Logout') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -102,7 +105,7 @@
                         <a class="nav-link" href="{{ url('/featured-products') }}">Featured Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/electronics') }}">Electronics</a>
+                        <a class="nav-link" href="{{ url('/home-appliances') }}">Home Appliances</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/fashions') }}">Fashions</a>

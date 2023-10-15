@@ -14,7 +14,9 @@ class HomeController extends Controller
     {
         $sliders = Slider::where('status', 1)->get();
         $trendingProducts = Product::where('trending', '1')->latest()->take(8)->get();
-        return view('home.index', compact('sliders', 'trendingProducts'));
+        $newArrivals = Product::latest()->take(8)->get();
+        $featuredProducts = Product::where('featured', '1')->latest()->take(8)->get();
+        return view('home.index', compact('sliders', 'trendingProducts', 'newArrivals', 'featuredProducts'));
     }
 
     public function categories()
@@ -48,5 +50,30 @@ class HomeController extends Controller
     function thankYou()
     {
         return view('home.thank-you');
+    }
+
+    function newArrivals()
+    {
+        $newArrivals = Product::latest()->take(8)->get();
+        return view('home.pages.new-arrivals', compact('newArrivals'));
+    }
+
+    function featuredProducts()
+    {
+        $featuredProducts = Product::where('featured', '1')->latest()->take(8)->get();
+        return view('home.pages.featured-products', compact('featuredProducts'));
+    }
+
+    function productCatDisplay()
+    {
+        $productView = Product::where('category_id', '4')->latest()->take(8)->get();
+        return view('home.pages.catProduct-view', compact('productView'));
+    }
+
+    function search(Request $request)
+    {
+        $search = $request->search;
+        $products = Product::where('name', 'like', '%' . $search . '%')->orWhere('description', 'like', '%' . $search . '%')->paginate(12);
+        return view('home.pages.search', compact('products'));
     }
 }

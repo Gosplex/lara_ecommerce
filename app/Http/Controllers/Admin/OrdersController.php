@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\InvoiceOrderMailable;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
@@ -65,5 +67,17 @@ class OrdersController extends Controller
 
         $pdf = Pdf::loadView('admin.invoice.generate-invoice', $data);
         return $pdf->download('invoice - ' . $orders->id . '-' . $todayDate . '.pdf');
+    }
+
+    function sendInvoice($orderId)
+    {
+        try {
+            $orders = Order::findOrfail($orderId);
+            Mail::to("$orders->email")->send(new InvoiceOrderMailable($orders));
+            return redirect()->back()->with('message', 'Order sent to ' . $orders->email . 'successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', 'Something went wrong');
+        }
+
     }
 }

@@ -44,7 +44,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
                     <h4>Welcome to Majestic Stores 👋</h4>
-                    <div class="underline"></div>
+                    <div class="underline mx-auto"></div>
                     <p> Your gateway to an unparalleled shopping experience. We believe in making every visit a regal
                         journey, where you are treated like royalty. Explore our aisles and discover a world of premium
                         products, unmatched service, and the grandeur of convenience. Join us on a majestic retail adventure
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="py-5 bg-white">
+    <div class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -66,6 +66,94 @@
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme owl-carousel">
                         @foreach ($trendingProducts as $productItem)
+                            <div class="item">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <label class="stock bg-success">New</label>
+                                        <a
+                                            href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
+                                            <img src="{{ asset($productItem->productImages[0]->image) }}"
+                                                alt="{{ $productItem->name }}" class="product-img" />
+                                        </a>
+                                    </div>
+                                    <div class="product-card-body">
+                                        <p class="product-brand">{{ $productItem->brand }}</p>
+                                        <h5 class="product-name">
+                                            <a href="">
+                                                HP Laptop
+                                            </a>
+                                        </h5>
+                                        <div>
+                                            <span class="selling-price">₹{{ $productItem->selling_price }}</span>
+                                            <span class="original-price">₹{{ $productItem->original_price }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="mb-2">New Arrivals
+                        <a href="{{ url('/new-arrivals') }}" class="btn btn-warning float-end">View More</a>
+                    </h4>
+                    <div class="underline"></div>
+                    <div class="mb-3"></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme owl-carousel">
+                        @foreach ($newArrivals as $productItem)
+                            <div class="item">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <label class="stock bg-success">New</label>
+                                        <a
+                                            href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
+                                            <img src="{{ asset($productItem->productImages[0]->image) }}"
+                                                alt="{{ $productItem->name }}" class="product-img" />
+                                        </a>
+                                    </div>
+                                    <div class="product-card-body">
+                                        <p class="product-brand">{{ $productItem->brand }}</p>
+                                        <h5 class="product-name">
+                                            <a href="">
+                                                HP Laptop
+                                            </a>
+                                        </h5>
+                                        <div>
+                                            <span class="selling-price">₹{{ $productItem->selling_price }}</span>
+                                            <span class="original-price">₹{{ $productItem->original_price }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="mb-2">Featured Products
+                        <a href="{{ url('/featured-products') }}" class="btn btn-warning float-end">View More</a>
+                    </h4>
+                    <div class="underline"></div>
+                    <div class="mb-3"></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme owl-carousel">
+                        @foreach ($featuredProducts as $productItem)
                             <div class="item">
                                 <div class="product-card">
                                     <div class="product-card-img">

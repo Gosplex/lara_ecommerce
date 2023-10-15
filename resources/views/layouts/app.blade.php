@@ -31,7 +31,10 @@
 
     <!-- Owl Carousel -->
     <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets\css\owl.theme.default.min.css') }}">
+    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}">
+
+    {{-- ExZoom Product --}}
+    <link href="{{ asset('assets/exzoom/jquery.exzoom.css') }}" rel="stylesheet">
 
 
     @livewireStyles
@@ -44,6 +47,8 @@
         <main>
             @yield('content')
         </main>
+
+        @include('layouts.inc.admin.frontend.footer')
     </div>
 
     <!-- Scripts -->
@@ -53,6 +58,9 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+
+    {{-- ExZoom Product --}}
+    <script src="{{ asset('assets/exzoom/jquery.exzoom.js') }}"></script>
 
     @if (Session::has('success'))
         <script>

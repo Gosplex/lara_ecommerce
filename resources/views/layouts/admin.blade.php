@@ -38,6 +38,10 @@
             width: 100%;
             height: 100%;
         }
+
+        .sidebar .nav .nav-item.active {
+            background-color: #e9e9e9;
+        }
     </style>
 
 
@@ -79,6 +83,11 @@
             <script src="{{ asset('admin/js/jquery.dataTables.js') }}"></script>
             <script src="{{ asset('admin/js/dataTables.bootstrap4.js') }}"></script>
             <!-- End custom js for this page-->
+
+            {{-- Ion-Icon CDN --}}
+            <!-- ====== ionicons ======= -->
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
             {{-- Loading Spinner --}}

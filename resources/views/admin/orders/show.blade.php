@@ -7,18 +7,31 @@
             <div class="row">
                 <div class="col-md-12">
                     @if (Session::has('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @elseif (Session::has('message'))
                         <div class="alert alert-success">{{ session('message') }}</div>
                     @endif
                     <div class="shadow bg-white p-3">
                         <h4 class="text-primary">
                             <i class="fa fa-shopping-cart"></i> Customer's Order Details
-                            <a href="{{ url('admin/orders') }}"
-                                class="btn btn-danger text-white btn-sm float-end mx-1">Back</a>
+                            <a href="{{ url('admin/orders') }}" class="btn btn-danger text-white btn-sm float-end mx-1">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                Back
+                            </a>
                             <a href="{{ url('admin/invoice/' . $orders->id . '/generate') }}"
-                                class="btn btn-primary text-white btn-sm float-end mx-1">Download Invoice</a>
+                                class="btn btn-primary text-white btn-sm float-end mx-1">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                                Download Invoice
+                            </a>
                             <a href="{{ url('admin/invoice/' . $orders->id) }}"
                                 class="btn btn-warning text-white btn-sm float-end mx-1" target="_blank">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
                                 View Invoice
+                            </a>
+                            <a href="{{ url('admin/invoice/' . $orders->id . '/mail') }}"
+                                class="btn btn-info text-white btn-sm float-end mx-1">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                Send Invoice
                             </a>
                         </h4>
 

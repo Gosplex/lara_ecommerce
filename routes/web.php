@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Home\ProfileController;
 use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\WishlistController;
+use App\Http\Controllers\Admin\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +33,10 @@ Route::controller(App\Http\Controllers\Home\HomeController::class)->group(functi
     Route::get('/collections', 'categories')->name('collections');
     Route::get('/collections/{category}', 'products')->name('products');
     Route::get('/collections/{category}/{product}', 'productView')->name('productView');
+    Route::get('/new-arrivals', 'newArrivals')->name('newArrivals');
+    Route::get('/featured-products', 'featuredProducts')->name('search');
+    Route::get('/home-appliances', 'productCatDisplay')->name('productCatDisplay');
+    Route::get('/search', 'search')->name('search');
 });
 
 
@@ -42,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('/orders', [App\Http\Controllers\Home\OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{orderId}', [App\Http\Controllers\Home\OrderController::class, 'show'])->name('orders.show');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/change-password', [ProfileController::class, 'changePswd']);
+    Route::post('/change-password', [ProfileController::class, 'changePassword']);
 });
 
 Route::get('/thank-you', [App\Http\Controllers\Home\HomeController::class, 'thankYou'])->name('thankYou');
@@ -103,10 +114,25 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('/orders/{order}/', 'update')->name('admin.orders.update');
         Route::get('/invoice/{order}/generate', 'generateInvoice')->name('admin.invoice.generateInvoice');
         Route::get('/invoice/{order}', 'viewInvoice')->name('admin.invoice.viewInvoice');
+        Route::get('/invoice/{order}/mail', 'sendInvoice');
     });
 
+    // Admin Site Seeing Routes
 
+    Route::get('/site-settings', [SettingsController::class, 'index'])->name('admin.settings');
+    Route::post('/settings', [SettingsController::class, 'update'])->name('admin.settings.update');
 
+    // Admin User Routes
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/users', 'index')->name('admin.users');
+        Route::get('/users/create', 'create')->name('admin.users.create');
+        Route::post('/users/create', 'store')->name('admin.users.store');
+        Route::get('/users/edit/{user}', 'edit')->name('admin.users.edit');
+        Route::put('/users/{user}', 'update')->name('admin.users.update');
+        Route::get('/users/delete/{user}', 'destroy')->name('admin.users.destroy');
+    });
+
+    // Admin Brand Routes
 
     Route::get('/brands', App\Livewire\Admin\Brand\Index::class);
 });

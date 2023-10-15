@@ -50,6 +50,7 @@ class ProductController extends Controller
             'selling_price' => $validatedData['selling_price'],
             'quantity' => $validatedData['quantity'],
             'trending' => $request->trending == true ? 1 : 0,
+            'featured' => $request->trending == true ? 1 : 0,
             'small_description' => $validatedData['small_description'],
         ]);
 
@@ -118,6 +119,7 @@ class ProductController extends Controller
                 'selling_price' => $validatedData['selling_price'],
                 'quantity' => $validatedData['quantity'],
                 'trending' => $request->trending == true ? 1 : 0,
+                'featured' => $request->trending == true ? 1 : 0,
                 'small_description' => $validatedData['small_description'],
             ]);
 

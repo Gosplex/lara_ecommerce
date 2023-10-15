@@ -28,6 +28,149 @@
                     <button class="btn btn-primary mt-2 mt-xl-0 text-white">Generate report</button>
                 </div>
             </div>
+
+            <div class="cardBox">
+                <a href="{{ url('admin/orders') }}">
+                    <div class="card card-admin">
+                        <div>
+                            <div class="numbers">{{ $totalOrder }}</div>
+                            <div class="cardName">Total Orders</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon class="admin-icon" name="list"></ion-icon>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{{ url('admin/orders') }}">
+                    <div class="card card-admin">
+                        <div>
+                            <div class="numbers">{{ $todayOrder }}</div>
+                            <div class="cardName">Today Orders</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon class="admin-icon" name="cart-outline"></ion-icon>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{{ url('admin/orders') }}">
+                    <div class="card card-admin">
+                        <div>
+                            <div class="numbers">{{ $thisMonthOrder }}</div>
+                            <div class="cardName">Monthly Orders</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon class="admin-icon" name="pricetags"></ion-icon>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{{ url('admin/orders') }}">
+                    <div class="card card-admin">
+                        <div>
+                            <div class="numbers">₹{{ $totalEarnings }}</div>
+                            <div class="cardName">Monthly Earnings</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon class="admin-icon" name="cash-outline"></ion-icon>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Orders</h2>
+                        <a href="{{ url('admin/orders') }}" class="btn">View All</a>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Customer Name</td>
+                                <td>Payment</td>
+                                <td>Tracking No</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($orders as $order)
+                                <tr>
+                                    <td class="text-uppercase">{{ $order->fullname }}</td>
+                                    <td>
+                                        @if ($order->status_message == 'cancelled')
+                                            <span>Reversed</span>
+                                        @elseif ($order->status_message == 'in Progress...')
+                                            <span>Due</span>
+                                        @elseif ($order->status_message == 'pending')
+                                            <span>Due</span>
+                                        @elseif ($order->status_message == 'processing')
+                                            <span>Due</span>
+                                        @else
+                                            <span>Paid</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $order->tracking_no }}</td>
+                                    <td>
+                                        @if ($order->status_message == 'cancelled')
+                                            <span class="status cancelled">Cancelled</span>
+                                        @elseif ($order->status_message == 'in Progress...')
+                                            <span class="status inProgress">In Progress</span>
+                                        @elseif ($order->status_message == 'pending')
+                                            <span class="status pending">Pending</span>
+                                        @elseif ($order->status_message == 'processing')
+                                            <span class="status processing">Processing</span>
+                                        @else
+                                            <span class="status delivered">Delivered</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ================= New Customers ================ -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Recent Customers</h2>
+                    </div>
+
+                    <table>
+                        @php
+                            $name = '';
+                            $result = [];
+                        @endphp
+
+                        @foreach ($orders as $order)
+                            @php
+                                $name = explode(' ', $order->fullname, 2);
+                                $result = $name[0];
+                                $random = rand(1,3);
+                            @endphp
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx"><img
+                                            src="{{ asset('images/' . $random . '.jpg') }}"
+                                            alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>{{ $result }} <br> <span>Italy</span></h4>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

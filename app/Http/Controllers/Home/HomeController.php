@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Slider;
+use App\Models\Message;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -76,4 +77,29 @@ class HomeController extends Controller
         $products = Product::where('name', 'like', '%' . $search . '%')->orWhere('description', 'like', '%' . $search . '%')->paginate(12);
         return view('home.pages.search', compact('products'));
     }
+
+    function aboutUs()
+    {
+        return view('home.pages.about-us');
+    }
+
+    function contactUs()
+    {
+        return view('home.pages.contact-us');
+    }
+
+    function contactUsPost(Request $request)
+    {
+        $data =  $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required|min:5',
+            'message' => 'required|min:10'
+        ]);
+
+        Message::create($data);
+
+        return redirect()->back()->with('success', 'Thank you for contacting us. We will get back to you soon.');
+    }
+
 }

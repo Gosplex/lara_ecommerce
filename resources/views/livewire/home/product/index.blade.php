@@ -92,9 +92,9 @@
                                 <div class="card-body">
                                     <h6 class="font-weight-bold pt-1">{{ $productItem->name }}</h6>
                                     <div class="text-muted description">{{ $productItem->brand }}</div>
-                                    <div class="d-flex align-items-center product"> <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                            class="fas fa-star"></span> <span class="far fa-star"></span>
+                                    <div class="d-flex align-items-center product"> <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span
+                                            class="fa fa-star"></span> <span class="fa fa-star"></span>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
                                         <div class="d-flex flex-column">

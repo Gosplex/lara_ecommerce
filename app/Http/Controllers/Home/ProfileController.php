@@ -32,7 +32,7 @@ class ProfileController extends Controller
             'name' => $request->name,
         ]);
 
-        $user->userDetail()->updateorCreate(
+        $user->userDetail()->updateOrCreate(
             [
                 'user_id' => $user->id,
             ],
@@ -43,7 +43,7 @@ class ProfileController extends Controller
             ]
         );
 
-        return back()->with('message', 'Profile updated successfully!');
+        return redirect('profile')->with('message', 'Profile updated successfully!');
     }
 
     function changePswd() {
@@ -64,10 +64,10 @@ class ProfileController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            return redirect()->back()->with('message', 'Password Updated Successfully');
+            return redirect('profile')->with('message', 'Password Updated Successfully');
         } else {
 
-            return redirect()->back()->with('message', 'Current Password does not match with Old Password');
+            return redirect('profile')->with('message', 'Current Password does not match with Old Password');
         }
     }
 }

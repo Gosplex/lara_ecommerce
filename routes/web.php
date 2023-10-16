@@ -6,6 +6,7 @@ use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Home\ProfileController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\WishlistController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -37,6 +38,9 @@ Route::controller(App\Http\Controllers\Home\HomeController::class)->group(functi
     Route::get('/featured-products', 'featuredProducts')->name('search');
     Route::get('/home-appliances', 'productCatDisplay')->name('productCatDisplay');
     Route::get('/search', 'search')->name('search');
+    Route::get('about-us', 'aboutUs')->name('aboutUs');
+    Route::get('/contact-us', 'contactUs')->name('contactUs');
+    Route::post('/contact-us', 'contactUsPost')->name('contactUsPost');
 });
 
 
@@ -49,8 +53,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('/orders', [App\Http\Controllers\Home\OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{orderId}', [App\Http\Controllers\Home\OrderController::class, 'show'])->name('orders.show');
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password', [ProfileController::class, 'changePswd']);
     Route::post('/change-password', [ProfileController::class, 'changePassword']);
 });
@@ -130,6 +134,12 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/users/edit/{user}', 'edit')->name('admin.users.edit');
         Route::put('/users/{user}', 'update')->name('admin.users.update');
         Route::get('/users/delete/{user}', 'destroy')->name('admin.users.destroy');
+    });
+
+    Route::controller(MessageController::class)->group(function () {
+        Route::get('/messages', 'index')->name('admin.messages');
+        Route::get('/messages/{message}', 'show')->name('admin.messages.show');
+        Route::get('/messages/delete/{message}', 'destroy')->name('admin.messages.destroy');
     });
 
     // Admin Brand Routes

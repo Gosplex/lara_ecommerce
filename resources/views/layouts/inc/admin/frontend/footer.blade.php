@@ -14,10 +14,10 @@
                     <h4 class="footer-heading">Quick Links</h4>
                     <div class="footer-underline"></div>
                     <div class="mb-2"><a href="{{ url('/') }}" class="text-white">Home</a></div>
-                    <div class="mb-2"><a href="{{ url('/') }}" class="text-white">About Us</a></div>
-                    <div class="mb-2"><a href="{{ url('/') }}" class="text-white">Contact Us</a></div>
-                    <div class="mb-2"><a href="{{ url('/') }}" class="text-white">Blogs</a></div>
-                    <div class="mb-2"><a href="{{ url('/') }}" class="text-white">Sitemaps</a></div>
+                    <div class="mb-2"><a href="{{ url('/about-us') }}" class="text-white">About Us</a></div>
+                    <div class="mb-2"><a href="{{ url('/contact-us') }}" class="text-white">Contact Us</a></div>
+                    <div class="mb-2"><a href="{{ url('/blogs') }}" class="text-white">Blogs</a></div>
+                    <div class="mb-2"><a href="{{ url('/sitemaps') }}" class="text-white">Sitemaps</a></div>
                 </div>
                 <div class="col-md-3">
                     <h4 class="footer-heading">Shop Now</h4>
@@ -60,7 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <p class=""> &copy; 2023 - Majestic Stores &copy; - Ecommerce. All rights reserved.</p>
+                    <p class=""> &copy; 2023 - Majestic Stores - Ecommerce. All rights reserved.</p>
                 </div>
                 <div class="col-md-4">
                     <div class="social-media text-white">

@@ -64,7 +64,7 @@
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            <i class="fa-solid fa-power-off"></i> {{ __('Logout') }}
+                                            <i class="fa fa-power-off"></i> {{ __('Logout') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -91,7 +91,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
@@ -106,18 +106,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/home-appliances') }}">Home Appliances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/fashions') }}">Fashions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Accessories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Appliances</a>
                     </li>
                 </ul>
             </div>

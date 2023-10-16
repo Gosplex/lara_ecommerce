@@ -118,7 +118,7 @@
                                             <p class="product-brand">{{ $relatedproductItem->brand }}</p>
                                             <h5 class="product-name">
                                                 <a href="">
-                                                    HP Laptop
+                                                    {{$relatedproductItem->name}}
                                                 </a>
                                             </h5>
                                             <div>
@@ -168,7 +168,7 @@
                                                 <p class="product-brand">{{ $relatedproductItem->brand }}</p>
                                                 <h5 class="product-name">
                                                     <a href="">
-                                                        HP Laptop
+                                                        {{$relatedproductItem->name}}
                                                     </a>
                                                 </h5>
                                                 <div>

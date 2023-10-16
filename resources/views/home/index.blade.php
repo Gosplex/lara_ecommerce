@@ -69,7 +69,7 @@
                             <div class="item">
                                 <div class="product-card">
                                     <div class="product-card-img">
-                                        <label class="stock bg-success">New</label>
+                                        <label class="stock bg-success">Trend</label>
                                         <a
                                             href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
                                             <img src="{{ asset($productItem->productImages[0]->image) }}"
@@ -80,7 +80,7 @@
                                         <p class="product-brand">{{ $productItem->brand }}</p>
                                         <h5 class="product-name">
                                             <a href="">
-                                                HP Laptop
+                                                {{ $productItem->name }}
                                             </a>
                                         </h5>
                                         <div>
@@ -113,7 +113,7 @@
                             <div class="item">
                                 <div class="product-card">
                                     <div class="product-card-img">
-                                        <label class="stock bg-success">New</label>
+                                        <label class="stock bg-info">New</label>
                                         <a
                                             href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
                                             <img src="{{ asset($productItem->productImages[0]->image) }}"
@@ -124,7 +124,7 @@
                                         <p class="product-brand">{{ $productItem->brand }}</p>
                                         <h5 class="product-name">
                                             <a href="">
-                                                HP Laptop
+                                                {{ $productItem->name }}
                                             </a>
                                         </h5>
                                         <div>
@@ -157,7 +157,7 @@
                             <div class="item">
                                 <div class="product-card">
                                     <div class="product-card-img">
-                                        <label class="stock bg-success">New</label>
+                                        <label class="stock bg-warning">Feature</label>
                                         <a
                                             href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
                                             <img src="{{ asset($productItem->productImages[0]->image) }}"
@@ -168,7 +168,7 @@
                                         <p class="product-brand">{{ $productItem->brand }}</p>
                                         <h5 class="product-name">
                                             <a href="">
-                                                HP Laptop
+                                                {{ $productItem->name }}
                                             </a>
                                         </h5>
                                         <div>

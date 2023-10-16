@@ -17,14 +17,14 @@ class CartShow extends Component
         if ($cartData) {
             if ($cartData->quantity == 1) {
                 $cartData->quantity = 1;
-                session()->flash('error', 'Quantity cannot be below 1!');
+                session()->flash('message', 'Quantity cannot be below 1!');
                 return;
             } else {
                 $cartData->decrement('quantity');
-                session()->set('success', 'Cart updated successfully!');
+                session()->set('message', 'Cart updated successfully!');
             }
         } else {
-            session()->flash('error', 'Cart not found!');
+            session()->flash('message', 'Cart not found!');
         }
     }
 
@@ -35,27 +35,15 @@ class CartShow extends Component
         if ($cartData) {
             if ($cartData->product->quantity > $cartData->quantity) {
                 $cartData->increment('quantity');
-                $this->dispatch('alert', [
-                    'type' => 'success',
-                    'message' => 'Cart updated successfully!',
-                    'status' => 200
-                ]);
+                session()->flash('message', 'Cart updated successfully!');
             } else {
                 $cartData->quantity = $cartData->product->quantity;
                 $cartData->save();
-                $this->dispatch('alert', [
-                    'type' => 'error',
-                    'message' => 'Quantity cannot be more than ' . $cartData->product->quantity . '!',
-                    'status' => 400
-                ]);
+                session()->flash('message', 'Quantity cannot be more than ' . $cartData->product->quantity . '!');
                 return;
             }
         } else {
-            $this->dispatch('alert', [
-                'type' => 'error',
-                'message' => 'Cart not found!',
-                'status' => 404
-            ]);
+            session()->flash('message', 'Cart not found!');
         }
     }
 
@@ -65,18 +53,9 @@ class CartShow extends Component
 
         if ($cartRemoveData) {
             $cartRemoveData->delete();
-            // $this->emit('cartUpdated');
-            $this->dispatch('alert', [
-                'type' => 'success',
-                'message' => 'Item removed successfully!',
-                'status' => 200
-            ]);
+            session()->flash('message', 'Cart item removed successfully!');
         } else {
-            $this->dispatch('alert', [
-                'type' => 'error',
-                'message' => 'Something went wrong!',
-                'status' => 404
-            ]);
+            session()->flash('message', 'Cart not found!');
         }
     }
     public function render()

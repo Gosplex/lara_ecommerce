@@ -24,7 +24,7 @@ use App\Http\Controllers\Admin\SettingsController;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 // Home Routes
@@ -136,11 +136,6 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/users/delete/{user}', 'destroy')->name('admin.users.destroy');
     });
 
-    Route::controller(MessageController::class)->group(function () {
-        Route::get('/messages', 'index')->name('admin.messages');
-        Route::get('/messages/{message}', 'show')->name('admin.messages.show');
-        Route::get('/messages/delete/{message}', 'destroy')->name('admin.messages.destroy');
-    });
 
     // Admin Brand Routes
 

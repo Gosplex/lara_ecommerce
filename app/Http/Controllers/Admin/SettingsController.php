@@ -42,6 +42,7 @@ class SettingsController extends Controller
                 'twitter' => $request->twitter,
                 'instagram' => $request->instagram,
                 'youtube' => $request->youtube,
+                'map' => $request->map,
             ]);
 
             return redirect()->back()->with('success', 'Settings updated successfully!');

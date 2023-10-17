@@ -54,6 +54,10 @@
                                 <label>Meta Description</label>
                                 <textarea rows="3" class="form-control" name="meta_description">{{ $setting->meta_description }}</textarea>
                             </div>
+                            <div class="col-md-12 mb-3">
+                                <label>Location Iframe</label>
+                                <textarea rows="3" class="form-control" name="map">{{ $setting->map }}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +73,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Phone #1</label>
-                                <input type="text" class="form-control" value="{{ $setting->phone_1 }}" name="phone_1" />
+                                <input type="text" class="form-control" value="{{ $setting->phone_1 }}"
+                                    name="phone_1" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Phone #2</label>
@@ -85,6 +90,78 @@
                                 <label>Email #2</label>
                                 <input type="text" class="form-control" value="{{ $setting->email_2 }}"
                                     name="email_2" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header bg-primary">
+                        <h3 class="text-white mb-0">Website About Section</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label>About Small Text #1</label>
+                                <input type="text" class="form-control" value="" name="about_text_1" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>About Small Text #2</label>
+                                <input type="text" class="form-control" value="{{ $setting->phone_1 }}"
+                                    name="about_text_2" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>About Small Text #3</label>
+                                <input type="text" class="form-control" value="{{ $setting->phone_2 }}"
+                                    name="about_text_3" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>About Image #1</label>
+                                <input type="file" class="form-control" name="about_img_1" />
+                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                    <div class="mt-3">
+                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                            style="width: 60px; height: 60px;">
+                                    </div>
+                                @else
+                                    <h4></h4>
+                                @endif
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>About Image #2</label>
+                                <input type="file" class="form-control" name="about_img_2" />
+                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                    <div class="mt-3">
+                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                            style="width: 60px; height: 60px;">
+                                    </div>
+                                @else
+                                    <h4></h4>
+                                @endif
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>About Image #3</label>
+                                <input type="file" class="form-control" name="about_img_3" />
+                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                    <div class="mt-3">
+                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                            style="width: 60px; height: 60px;">
+                                    </div>
+                                @else
+                                    <h4></h4>
+                                @endif
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label>About Large Text #1</label>
+                                <textarea rows="3" class="form-control" name="company_address">{{ $setting->company_address }}</textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label>About Large Text #2</label>
+                                <textarea rows="3" class="form-control" name="company_address">{{ $setting->company_address }}</textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label>About Large Text #3</label>
+                                <textarea rows="3" class="form-control" name="company_address">{{ $setting->company_address }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -120,7 +197,75 @@
                     </div>
                 </div>
 
-                <div class="text-end">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary text-white">Save Settings</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="col-md-12 grid-margin">
+            @if (session('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <form action="{{ url('/admin/settings') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="card mb-3">
+                    <div class="card-header bg-primary">
+                        <h3 class="text-white mb-0">Our Team Members</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label>Team Name</label>
+                                <input type="text" class="form-control" value=""
+                                    name="website_name" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Team Title</label>
+                                <input type="text" class="form-control" value=""
+                                    name="website_url" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Team Image</label>
+                                <input type="file" class="form-control" name="logo" />
+                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                    <div class="mt-3">
+                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                            style="width: 60px; height: 60px;">
+                                    </div>
+                                @else
+                                    <h4></h4>
+                                @endif
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Facebook (optional)</label>
+                                <input type="text" class="form-control" name="facebook"
+                                    value="" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Twitter (optional)</label>
+                                <input type="text" class="form-control" name="twitter"
+                                    value="" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Instagram (optional)</label>
+                                <input type="text" class="form-control" name="instagram"
+                                    value="" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>LinkedIn (optional)</label>
+                                <input type="text" class="form-control" name="youtube"
+                                    value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
                     <button type="submit" class="btn btn-primary text-white">Save Settings</button>
                 </div>
             </form>

@@ -2,9 +2,16 @@
     <div class="top-navbar">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
-                    <h5 class="brand-name">{{ $websiteSetting->website_name ?? 'Majestic Stores' }}</h5>
-                </div>
+                @if (file_exists(public_path('uploads/website_details/' . $websiteSetting->logo)))
+                    <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                        <img class="brand-name" src="{{ asset('uploads/website_details/' . $websiteSetting->logo) }}"
+                            style="width: 150px; height: 60px;">
+                    </div>
+                @else
+                    <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                        <h5 class="brand-name">{{ $websiteSetting->website_name ?? 'Majestic Stores' }}</h5>
+                    </div>
+                @endif
                 <div class="col-md-5 my-auto">
                     <form role="search" action="{{ url('serach') }}" method="GET">
                         <div class="input-group">

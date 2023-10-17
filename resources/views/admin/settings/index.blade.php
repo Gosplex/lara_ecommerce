@@ -12,7 +12,7 @@
                 </div>
             @endif
 
-            <form action="{{ url('/admin/settings') }}" method="POST">
+            <form action="{{ url('/admin/settings') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card mb-3">
                     <div class="card-header bg-primary">
@@ -30,9 +30,21 @@
                                 <input type="text" class="form-control" value="{{ $setting->website_url }}"
                                     name="website_url" />
                             </div>
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label>Page Title</label>
                                 <input type="text" class="form-control" value="{{ $setting->title }}" name="title" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Website Logo</label>
+                                <input type="file" class="form-control" name="logo" />
+                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                    <div class="mt-3">
+                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                            style="width: 60px; height: 60px;">
+                                    </div>
+                                @else
+                                    <h4></h4>
+                                @endif
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Meta Keywords</label>
@@ -61,7 +73,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Phone #2</label>
-                                <input type="text" class="form-control" value="{{ $setting->phone_2 }}" name="phone_2" />
+                                <input type="text" class="form-control" value="{{ $setting->phone_2 }}"
+                                    name="phone_2" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Email #1</label>

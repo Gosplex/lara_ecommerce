@@ -10,6 +10,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\OrderItem;
 
 class DashboardController extends Controller
@@ -28,6 +29,7 @@ class DashboardController extends Controller
             }
         }
 
+        // $messages = Message::orderBy('id', 'desc')->take(5)->get();
         $totalOrder = Order::count();
         $todayOrder = Order::whereDate('created_at', Carbon::today())->count();
         $thisMonthOrder = Order::whereMonth('created_at', Carbon::now()->month)->count();

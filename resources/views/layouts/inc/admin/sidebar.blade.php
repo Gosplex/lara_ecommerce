@@ -30,18 +30,21 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basics" aria-expanded="false"
-                aria-controls="ui-basics">
+        <li class="nav-item {{ Request::is('admin/products*') ? 'show' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basics"
+                aria-expanded="{{ Request::is('admin/products*') ? 'true' : 'false' }}" aria-controls="ui-basics">
                 <i class="mdi mdi-store menu-icon"></i>
                 <span class="menu-title">Products</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basics">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products/create') }}">Add Product</a>
+                    <li class="nav-item"> <a
+                            class="nav-link {{ Request::is('admin/products/create') ? 'active' : '' }}"
+                            href="{{ url('admin/products/create') }}">Add Product</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products') }}">View Products</a></li>
+                    <li class="nav-item"> <a class="nav-link {{ Request::is('admin/products') ? 'active' : '' }}"
+                            href="{{ url('admin/products') }}">View Products</a></li>
                 </ul>
             </div>
         </li>
@@ -63,16 +66,19 @@
                 <span class="menu-title">Home Slider</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <li class="nav-item {{ Request::is('admin/users*') ? 'show' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#auth"
+                aria-expanded="{{ Request::is('admin/users*') ? 'true' : 'false' }}" aria-controls="auth">
                 <i class="mdi mdi-account menu-icon"></i>
                 <span class="menu-title">Users</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/users/create') }}"> Add User</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/users') }}"> View Users </a></li>
+                    <li class="nav-item"> <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}"
+                            href="{{ url('admin/users/create') }}"> Add User</a></li>
+                    <li class="nav-item"> <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}"
+                            href="{{ url('admin/users') }}"> View Users </a></li>
                 </ul>
             </div>
         </li>

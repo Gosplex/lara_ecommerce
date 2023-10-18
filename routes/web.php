@@ -125,6 +125,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/site-settings', [SettingsController::class, 'index'])->name('admin.settings');
     Route::post('/settings', [SettingsController::class, 'update'])->name('admin.settings.update');
+    Route::post('/team', [SettingsController::class, 'store'])->name('admin.settings.store');
 
     // Admin User Routes
     Route::controller(UserController::class)->group(function () {

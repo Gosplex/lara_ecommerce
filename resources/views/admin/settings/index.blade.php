@@ -103,24 +103,25 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label>About Small Text #1</label>
-                                <input type="text" class="form-control" value="" name="about_text_1" />
+                                <input type="text" class="form-control" value="{{ $setting->about_text_1 }}"
+                                    name="about_text_1" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>About Small Text #2</label>
-                                <input type="text" class="form-control" value="{{ $setting->phone_1 }}"
+                                <input type="text" class="form-control" value="{{ $setting->about_text_2 }}"
                                     name="about_text_2" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>About Small Text #3</label>
-                                <input type="text" class="form-control" value="{{ $setting->phone_2 }}"
+                                <input type="text" class="form-control" value="{{ $setting->about_text_3 }}"
                                     name="about_text_3" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>About Image #1</label>
                                 <input type="file" class="form-control" name="about_img_1" />
-                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                @if (file_exists(public_path('uploads/about_images/' . $setting->about_img_1)))
                                     <div class="mt-3">
-                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                        <img src="{{ asset('uploads/about_images/' . $setting->about_img_1) }}"
                                             style="width: 60px; height: 60px;">
                                     </div>
                                 @else
@@ -130,9 +131,9 @@
                             <div class="col-md-6 mb-3">
                                 <label>About Image #2</label>
                                 <input type="file" class="form-control" name="about_img_2" />
-                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                @if (file_exists(public_path('uploads/about_images/' . $setting->about_img_2)))
                                     <div class="mt-3">
-                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                        <img src="{{ asset('uploads/about_images/' . $setting->about_img_2) }}"
                                             style="width: 60px; height: 60px;">
                                     </div>
                                 @else
@@ -142,9 +143,9 @@
                             <div class="col-md-6 mb-3">
                                 <label>About Image #3</label>
                                 <input type="file" class="form-control" name="about_img_3" />
-                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
+                                @if (file_exists(public_path('uploads/about_images/' . $setting->about_img_3)))
                                     <div class="mt-3">
-                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
+                                        <img src="{{ asset('uploads/about_images/' . $setting->about_img_3) }}"
                                             style="width: 60px; height: 60px;">
                                     </div>
                                 @else
@@ -153,15 +154,15 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label>About Large Text #1</label>
-                                <textarea rows="3" class="form-control" name="company_address">{{ $setting->company_address }}</textarea>
+                                <textarea rows="3" class="form-control" name="long_text_1">{{ $setting->long_text_1 }}</textarea>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label>About Large Text #2</label>
-                                <textarea rows="3" class="form-control" name="company_address">{{ $setting->company_address }}</textarea>
+                                <textarea rows="3" class="form-control" name="long_text_2">{{ $setting->long_text_2 }}</textarea>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label>About Large Text #3</label>
-                                <textarea rows="3" class="form-control" name="company_address">{{ $setting->company_address }}</textarea>
+                                <textarea rows="3" class="form-control" name="long_text_3">{{ $setting->long_text_3 }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -212,7 +213,7 @@
                 </div>
             @endif
 
-            <form action="{{ url('/admin/settings') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/admin/team') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card mb-3">
                     <div class="card-header bg-primary">
@@ -222,45 +223,31 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label>Team Name</label>
-                                <input type="text" class="form-control" value=""
-                                    name="website_name" />
+                                <input type="text" class="form-control" value="" name="team_name" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Team Title</label>
-                                <input type="text" class="form-control" value=""
-                                    name="website_url" />
+                                <input type="text" class="form-control" value="" name="team_title" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Team Image</label>
-                                <input type="file" class="form-control" name="logo" />
-                                @if (file_exists(public_path('uploads/website_details/' . $setting->logo)))
-                                    <div class="mt-3">
-                                        <img src="{{ asset('uploads/website_details/' . $setting->logo) }}"
-                                            style="width: 60px; height: 60px;">
-                                    </div>
-                                @else
-                                    <h4></h4>
-                                @endif
+                                <input type="file" class="form-control" name="team_image" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Facebook (optional)</label>
-                                <input type="text" class="form-control" name="facebook"
-                                    value="" />
+                                <input type="text" class="form-control" name="team_facebook" value="" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Twitter (optional)</label>
-                                <input type="text" class="form-control" name="twitter"
-                                    value="" />
+                                <input type="text" class="form-control" name="team_twitter" value="" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Instagram (optional)</label>
-                                <input type="text" class="form-control" name="instagram"
-                                    value="" />
+                                <input type="text" class="form-control" name="team_instagram" value="" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>LinkedIn (optional)</label>
-                                <input type="text" class="form-control" name="youtube"
-                                    value="" />
+                                <input type="text" class="form-control" name="team_linkedin" value="" />
                             </div>
                         </div>
                     </div>

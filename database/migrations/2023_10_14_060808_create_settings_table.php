@@ -23,6 +23,15 @@ return new class extends Migration
             $table->string('phone_2')->nullable();
             $table->string('email_1')->nullable();
             $table->string('email_2')->nullable();
+            $table->string('about_text_1')->nullable();
+            $table->string('about_text_2')->nullable();
+            $table->string('about_text_3')->nullable();
+            $table->string('about_img_1')->nullable();
+            $table->string('about_img_2')->nullable();
+            $table->string('about_img_3')->nullable();
+            $table->string('long_text_1')->nullable();
+            $table->string('long_text_2')->nullable();
+            $table->string('long_text_3')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();

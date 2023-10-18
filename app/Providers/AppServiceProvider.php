@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Team;
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -23,8 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $websiteSetting = Setting::first();
+        $teamDetails = Team::all();
         Paginator::useBootstrap();
         View::share('websiteSetting', $websiteSetting);
-
+        View::share('teamDetails', $teamDetails);
     }
 }

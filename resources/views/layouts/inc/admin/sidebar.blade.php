@@ -82,6 +82,38 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item {{ Request::is('admin/blogs/category*') ? 'show' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#blogCategory"
+                aria-expanded="{{ Request::is('admin/blogs/category*') ? 'true' : 'false' }}" aria-controls="auth">
+                <i class="mdi mdi-newspaper  menu-icon"></i>
+                <span class="menu-title">Blog Category</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="blogCategory">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link {{ Request::is('admin/blogs/category/create') ? 'active' : '' }}"
+                            href="{{ url('admin/blogs/category/create') }}"> Add Category</a></li>
+                    <li class="nav-item"> <a class="nav-link {{ Request::is('admin/blogs/category') ? 'active' : '' }}"
+                            href="{{ url('admin/blogs/category') }}"> View Category </a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item {{ Request::is('admin/blogs/category*') ? 'show' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#blogPost"
+                aria-expanded="{{ Request::is('admin/blogs/category*') ? 'true' : 'false' }}" aria-controls="auth">
+                <i class="mdi mdi-book-open menu-icon"></i>
+                <span class="menu-title">Blog Post</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="blogPost">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link {{ Request::is('admin/blogs/create') ? 'active' : '' }}"
+                            href="{{ url('admin/blogs/create') }}">Write Blog Post</a></li>
+                    <li class="nav-item"> <a class="nav-link {{ Request::is('admin/blogs/category') ? 'active' : '' }}"
+                            href="{{ url('admin/blogs/view') }}"> View Blog Post </a></li>
+                </ul>
+            </div>
+        </li>
         <li class="nav-item {{ Request::is('admin/site-settings') ? 'active' : '' }}">
             <a class="nav-link" href="{{ url('admin/site-settings') }}">
                 <i class="mdi mdi-cogs menu-icon"></i>

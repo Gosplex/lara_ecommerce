@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Home;
 use App\Models\Slider;
 use App\Models\Message;
 use App\Models\Product;
+use App\Models\BlogPost;
 use App\Models\Category;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -102,4 +104,27 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Thank you for contacting us. We will get back to you soon.');
     }
 
+    function blogs()
+    {
+        $blogCategory = BlogCategory::all();
+
+
+        $category = BlogCategory::with(['post' => function ($query) {
+            $query->latest();
+        }])->where('slug', 'products')->first();
+
+        $category1 = BlogCategory::with(['post' => function ($query) {
+            $query->latest();
+        }])->where('slug', 'how-to guides')->first();
+
+        $category2 = BlogCategory::with(['post' => function ($query) {
+            $query->latest();
+        }])->where('slug', 'customer-stories')->first();
+
+        $category3 = BlogCategory::with(['post' => function ($query) {
+            $query->latest();
+        }])->where('slug', 'industry-updates')->first();
+
+        return view('home.pages.blogs', compact('blogCategory', 'category', 'category1', 'category2', 'category3'));
+    }
 }

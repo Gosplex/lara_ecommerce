@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Home\ProfileController;
 use App\Http\Controllers\Admin\MessageController;
@@ -41,6 +42,7 @@ Route::controller(App\Http\Controllers\Home\HomeController::class)->group(functi
     Route::get('about-us', 'aboutUs')->name('aboutUs');
     Route::get('/contact-us', 'contactUs')->name('contactUs');
     Route::post('/contact-us', 'contactUsPost')->name('contactUsPost');
+    Route::get('/blogs', 'blogs')->name('blogs');
 });
 
 
@@ -119,6 +121,25 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/invoice/{order}/generate', 'generateInvoice')->name('admin.invoice.generateInvoice');
         Route::get('/invoice/{order}', 'viewInvoice')->name('admin.invoice.viewInvoice');
         Route::get('/invoice/{order}/mail', 'sendInvoice');
+    });
+
+    // Blog Routes
+    Route::controller(BlogController::class)->group(function () {
+        // Blog Category
+        Route::get('/blogs/category', 'showCategory')->name('admin.blogs.showCategory');
+        Route::get('/blogs/category/create', 'createBlogCategory')->name('admin.blogs.createBlogCategory');
+        Route::post('/blogs/category/create', 'storeBlogCategory')->name('admin.blogs.storeBlogCategory');
+        Route::get('blogs/category/edit/{blogCategory}', 'editBlogCategory')->name('admin.blogs.editBlogCategory');
+        Route::put('blogs/category/{blogCategory}', 'updateBlogCategory')->name('admin.blogs.updateBlogCategory');
+        Route::get('blogs/category/delete/{blogCategory}', 'deleteBlogCategory')->name('admin.blogs.deleteBlogCategory');
+
+        // Blog Posts
+        Route::get('/blogs/view', 'index')->name('admin.blogs.view');
+        Route::get('/blogs/create', 'create')->name('admin.blogs.create');
+        Route::post('/blogs/create', 'store')->name('admin.blogs.store');
+        Route::get('/blogs/edit/{blog}', 'edit')->name('admin.blogs.edit');
+        Route::put('/blogs/{blog}', 'update')->name('admin.blogs.update');
+        Route::get('/blogs/delete/{blog}', 'destroy')->name('admin.blogs.destroy');
     });
 
     // Admin Site Seeing Routes

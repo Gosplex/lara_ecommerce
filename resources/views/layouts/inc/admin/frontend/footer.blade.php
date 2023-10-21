@@ -20,15 +20,12 @@
                     <div class="mb-2"><a href="{{ url('/sitemaps') }}" class="text-white">Sitemaps</a></div>
                 </div>
                 <div class="col-md-3">
-                    <h4 class="footer-heading">Shop Now</h4>
+                    <h4 class="footer-heading">Latest Categories</h4>
                     <div class="footer-underline"></div>
-                    <div class="mb-2"><a href="{{ url('/collections') }}" class="text-white">Collections</a></div>
-                    <div class="mb-2"><a href="{{ url('/') }}" class="text-white">Trending Products</a></div>
-                    <div class="mb-2"><a href="{{ url('new-arrivals') }}" class="text-white">New Arrivals Products</a>
-                    </div>
-                    <div class="mb-2"><a href="{{ url('/featured-products') }}" class="text-white">Featured
-                            Products</a></div>
-                    <div class="mb-2"><a href="{{ url('/cart') }}" class="text-white">Cart</a></div>
+                    @foreach ($categoriesDisplay as $catDisplay)
+                        <div class="mb-2"><a href="{{ url('/collections/' . $catDisplay->slug) }}"
+                                class="text-white">{{ $catDisplay->name }}</a></div>
+                    @endforeach
                 </div>
                 <div class="col-md-3">
                     <h4 class="footer-heading">Reach Us</h4>
@@ -38,7 +35,7 @@
                             <i class="fa fa-map-marker"></i>
                             {{ $websiteSetting->website_address ??
                                 '#444, some main road, some area, some street, rajkot,
-                                                                                    india - 360006' }}
+                                                                                                                                                                        india - 360006' }}
                         </p>
                     </div>
                     <div class="mb-2">
@@ -65,7 +62,8 @@
                 <div class="col-md-4">
                     <div class="social-media text-white">
                         Get Connected:
-                        <a href="{{ url($websiteSetting->twitter) }}"><i class="fa fa-twitter" style="color: white"></i></a>
+                        <a href="{{ url($websiteSetting->twitter) }}"><i class="fa fa-twitter"
+                                style="color: white"></i></a>
                         <a href="{{ url($websiteSetting->instagram) }}"><i class="fa fa-instagram"></i></a>
                         <a href="{{ url($websiteSetting->youtube) }}"><i class="fa fa-youtube"></i></a>
                         <a href="{{ url($websiteSetting->facebook) }}"><i class="fa fa-facebook"></i></a>

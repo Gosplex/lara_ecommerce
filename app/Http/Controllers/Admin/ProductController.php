@@ -52,6 +52,7 @@ class ProductController extends Controller
             'trending' => $request->trending == true ? 1 : 0,
             'featured' => $request->trending == true ? 1 : 0,
             'small_description' => $validatedData['small_description'],
+            'product_brochure' => $validatedData['product_brochure'] ?? '',
         ]);
 
         if ($request->hasFile('image')) {
@@ -68,6 +69,18 @@ class ProductController extends Controller
                     'image' => $finalImagePathName,
                 ]);
             }
+        }
+
+        if ($request->hasFile('product_brochure')) {
+            $uploadPath = 'uploads/product_brochures/';
+            $productBrochureFile = $request->file('product_brochure');
+
+            $extension = $productBrochureFile->getClientOriginalExtension();
+            $brochureName = Str::random(10) . '.' . $extension;
+            $productBrochureFile->move($uploadPath, $brochureName);
+            $finalBrochurePath = $uploadPath . $brochureName;
+
+            $product->update(['product_brochure' => $finalBrochurePath]);
         }
 
         if ($request->colors) {
@@ -121,6 +134,7 @@ class ProductController extends Controller
                 'trending' => $request->trending == true ? 1 : 0,
                 'featured' => $request->trending == true ? 1 : 0,
                 'small_description' => $validatedData['small_description'],
+                'product_brochure' => $validatedData['product_brochure'] ?? '',
             ]);
 
             if ($request->hasFile('image')) {
@@ -137,6 +151,18 @@ class ProductController extends Controller
                         'image' => $finalImagePathName,
                     ]);
                 }
+            }
+
+            if ($request->hasFile('product_brochure')) {
+                $uploadPath = 'uploads/product_brochures/';
+                $productBrochureFile = $request->file('product_brochure');
+
+                $extension = $productBrochureFile->getClientOriginalExtension();
+                $brochureName = Str::random(10) . '.' . $extension;
+                $productBrochureFile->move($uploadPath, $brochureName);
+                $finalBrochurePath = $uploadPath . $brochureName;
+
+                $product->update(['product_brochure' => $finalBrochurePath]);
             }
 
             if ($request->colors) {
@@ -183,9 +209,9 @@ class ProductController extends Controller
     function updateProductColorQty(Request $request, $id)
     {
         $productColorData = Product::findOrFail($request->product_id)
-        ->productColors()
-        ->where('id', $id)
-        ->first();
+            ->productColors()
+            ->where('id', $id)
+            ->first();
 
         $productColorData->update([
             'quantity' => $request->qty

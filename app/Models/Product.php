@@ -28,6 +28,7 @@ class Product extends Model
         'meta_title',
         'meta_description',
         'meta_keyword',
+        'product_brochure'
     ];
 
     public function category() {

@@ -154,12 +154,11 @@
                             @php
                                 $name = explode(' ', $order->fullname, 2);
                                 $result = $name[0];
-                                $random = rand(1,3);
+                                $random = rand(1, 3);
                             @endphp
                             <tr>
                                 <td width="60px">
-                                    <div class="imgBx"><img
-                                            src="{{ asset('images/' . $random . '.jpg') }}"
+                                    <div class="imgBx"><img src="{{ asset('images/' . $random . '.jpg') }}"
                                             alt="">
                                     </div>
                                 </td>
@@ -171,6 +170,32 @@
                     </table>
                 </div>
             </div>
+            <div class="border border-3 rounded">
+                <div id="donutchart" style="width: 1500px; height: 500px;"></div>
+            </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <!-- Include Google Charts and render the chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {
+            packages: ["corechart"]
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(@json($data));
+
+            var options = {
+                title: 'Data Statistics',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    </script>
+@endpush

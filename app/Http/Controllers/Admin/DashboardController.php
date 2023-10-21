@@ -17,6 +17,20 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $brandsCount = Brand::count();
+        $categoriesCount = Category::count();
+        $productsCount = Product::count();
+        $usersCount = User::count();
+
+        $data = [
+            ['Data Type', 'Count'],
+            ['Brands', $brandsCount],
+            ['Categories', $categoriesCount],
+            ['Products', $productsCount],
+            ['Users', $usersCount],
+        ];
+
+
         $completeOrders = Order::where('status_message', 'completed')->whereMonth('created_at', Carbon::now()->month)->get();
 
         $totalEarnings = 0;
@@ -35,6 +49,6 @@ class DashboardController extends Controller
         $thisMonthOrder = Order::whereMonth('created_at', Carbon::now()->month)->count();
         $thisYearOrder = Order::whereYear('created_at', Carbon::now()->year)->count();
         $orders = Order::orderBy('id', 'desc')->take(10)->get();
-        return view('admin.dashboard', compact('totalOrder', 'todayOrder', 'thisMonthOrder', 'thisYearOrder', 'orders', 'totalEarnings'));
+        return view('admin.dashboard', compact('totalOrder', 'todayOrder', 'thisMonthOrder', 'thisYearOrder', 'orders', 'totalEarnings', 'data'));
     }
 }

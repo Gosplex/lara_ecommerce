@@ -6,7 +6,9 @@ use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Wishlists;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class View extends Component
 {
@@ -115,6 +117,25 @@ class View extends Component
                 'status' => 401
             ]);
             return false;
+        }
+    }
+
+    public function downloadPDF($filePath)
+    {
+        $file = public_path($filePath);
+
+        if (file_exists($file)) {
+            $randomString = Str::random(10);
+            $extension = pathinfo($file, PATHINFO_EXTENSION);
+            $newFileName = $randomString . '.' . $extension;
+
+            $headers = [
+                'Content-Type' => 'application/pdf',
+            ];
+
+            return Response::download($file, $newFileName, $headers);
+        } else {
+            session()->flash('error', 'File not found.');
         }
     }
 

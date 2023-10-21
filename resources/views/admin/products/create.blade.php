@@ -58,6 +58,11 @@
                                     data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color"
                                     aria-selected="false"> Product Color</button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="brochure-tab" data-bs-toggle="tab"
+                                    data-bs-target="#brochure-tab-pane" type="button" role="tab"
+                                    aria-controls="brochure" aria-selected="false"> Product Brochure</button>
+                            </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade border p-3 show active" id="home-tab-pane" role="tabpanel"
@@ -179,7 +184,8 @@
                                                     <b>Color:</b> <input name="colors[{{ $color->id }}]"
                                                         value="{{ $color->id }}" type="checkbox"> {{ $color->name }}
                                                     <br>
-                                                    <b>Quantity:</b> <input type="number" name="colorquantity[{{ $color->id }}]"
+                                                    <b>Quantity:</b> <input type="number"
+                                                        name="colorquantity[{{ $color->id }}]"
                                                         style="border: 1px solid; width: 70px;">
                                                 </div>
                                             </div>
@@ -189,6 +195,14 @@
                                             </div>
                                         @endforelse
                                     </div>
+                                </div>
+                            </div>
+                            {{-- PRODUCT BROCHURE --}}
+                            <div class="tab-pane fade border p-3" id="brochure-tab-pane" role="tabpanel"
+                                aria-labelledby="brochure-tab">
+                                <div class="mb-3 mt-3">
+                                    <label>Upload Product Brochure</label>
+                                    <input name="product_brochure" type="file" class="form-control">
                                 </div>
                             </div>
                         </div>

@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->string('meta_keyword')->nullable();
 
+            $table->string('product_brochure')->nullable();
+
 
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

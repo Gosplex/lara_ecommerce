@@ -62,6 +62,11 @@
                                     Image</button>
                             </li>
                             <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="brochure-tab" data-bs-toggle="tab"
+                                    data-bs-target="#brochure-tab-pane" type="button" role="tab"
+                                    aria-controls="brochure" aria-selected="false"> Product Brochure</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="color-tab" data-bs-toggle="tab"
                                     data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color"
                                     aria-selected="false">Produt Colors</button>
@@ -86,7 +91,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>Product Slug</label>
-                                    <input type="text" name="slug" class="form-control" value="{{ $product->slug }}">
+                                    <input type="text" name="slug" class="form-control"
+                                        value="{{ $product->slug }}">
                                 </div>
                                 <div class="mb-3">
                                     <label>Select Brands</label>
@@ -211,6 +217,15 @@
                                     @else
                                         <div class="alert alert-danger">No Image Found</div>
                                     @endif
+                                </div>
+                            </div>
+
+                            {{-- PRODUCT BROCHURE --}}
+                            <div class="tab-pane fade border p-3" id="brochure-tab-pane" role="tabpanel"
+                                aria-labelledby="brochure-tab">
+                                <div class="mb-3 mt-3">
+                                    <label>Upload Product Brochure</label>
+                                    <input name="product_brochure" type="file" class="form-control">
                                 </div>
                             </div>
                             {{-- COLOR TAG --}}

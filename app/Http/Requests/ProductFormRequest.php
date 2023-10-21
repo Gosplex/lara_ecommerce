@@ -37,6 +37,7 @@ class ProductFormRequest extends FormRequest
             'meta_description' => 'required|string|max:255',
             'meta_keyword' => 'required|string|max:255',
             'image' => 'nullable',
+            'product_brochure' => 'nullable|file|mimes:pdf',
 
         ];
     }

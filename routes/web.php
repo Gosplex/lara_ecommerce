@@ -8,6 +8,7 @@ use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Home\OrderController;
+use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\SliderController;
@@ -172,6 +173,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/users/edit/{user}', 'edit')->name('admin.users.edit');
         Route::put('/users/{user}', 'update')->name('admin.users.update');
         Route::get('/users/delete/{user}', 'destroy')->name('admin.users.destroy');
+    });
+
+    Route::controller(ChartController::class)->group(function () {
+        Route::get('/loadchat', 'loadChart')->name('admin.loadChart');
     });
 
 

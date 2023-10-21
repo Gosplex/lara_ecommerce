@@ -67,6 +67,9 @@
                         <button type="button" wire:click="addToWishlist({{ $product->id }})" class="btn btn1"> <i
                                 class="fa fa-heart"></i> Add To Wishlist
                         </button>
+                        <button type="button" wire:click="downloadPDF('{{ $product->product_brochure }}')"
+                            class="btn btn1"> <i class="fa fa-download"></i> Download PDF
+                        </button>
                     </div>
                     <div class="mt-3">
                         <h5 class="mb-0">Small Description</h5>
@@ -118,7 +121,7 @@
                                             <p class="product-brand">{{ $relatedproductItem->brand }}</p>
                                             <h5 class="product-name">
                                                 <a href="">
-                                                    {{$relatedproductItem->name}}
+                                                    {{ $relatedproductItem->name }}
                                                 </a>
                                             </h5>
                                             <div>
@@ -168,7 +171,7 @@
                                                 <p class="product-brand">{{ $relatedproductItem->brand }}</p>
                                                 <h5 class="product-name">
                                                     <a href="">
-                                                        {{$relatedproductItem->name}}
+                                                        {{ $relatedproductItem->name }}
                                                     </a>
                                                 </h5>
                                                 <div>

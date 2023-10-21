@@ -17,7 +17,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()->role_as == '0') {
-            return redirect('/home')->with('status', 'You are not allowed to Admin Dashboard');
+            return redirect('/')->with('status', 'You are not allowed to Admin Dashboard');
         }
 
         return $next($request);

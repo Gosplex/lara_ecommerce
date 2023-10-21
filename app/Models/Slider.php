@@ -16,5 +16,6 @@ class Slider extends Model
         'description',
         'image',
         'status',
+        'blog_slider'
     ];
 }

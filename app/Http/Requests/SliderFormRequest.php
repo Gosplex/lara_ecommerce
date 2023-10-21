@@ -26,6 +26,9 @@ class SliderFormRequest extends FormRequest
             'description' => 'required|max:800|string',
             'image' => 'required',
             'status' => 'nullable',
+            'blog_slider' => 'nullable',
         ];
     }
 }
+
+

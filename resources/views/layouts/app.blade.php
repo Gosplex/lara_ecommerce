@@ -21,13 +21,6 @@
     {{-- Font Awesome --}}
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    {{-- Toastr --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
-
-
-
     <!-- Styles -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets\css\style.css') }}">
@@ -38,6 +31,9 @@
 
     {{-- ExZoom Product --}}
     <link href="{{ asset('assets/exzoom/jquery.exzoom.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('assets\css\blog.css') }}">
 
 
     @livewireStyles
@@ -64,8 +60,14 @@
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/easing/easing.min.js') }}"></script>
+
     {{-- ExZoom Product --}}
     <script src="{{ asset('assets/exzoom/jquery.exzoom.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('assets/js/blog.js') }}"></script>
 
     @if (Session::has('message'))
         <script>

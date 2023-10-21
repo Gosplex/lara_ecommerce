@@ -19,7 +19,14 @@ class HomeController extends Controller
         $trendingProducts = Product::where('trending', '1')->latest()->take(8)->get();
         $newArrivals = Product::latest()->take(8)->get();
         $featuredProducts = Product::where('featured', '1')->latest()->take(8)->get();
-        return view('home.index', compact('sliders', 'trendingProducts', 'newArrivals', 'featuredProducts'));
+        $categories = Category::all();
+        return view('home.index',
+                compact('sliders',
+                        'trendingProducts',
+                        'newArrivals',
+                        'featuredProducts',
+                        'categories'
+                    ));
     }
 
     public function categories()
@@ -115,16 +122,38 @@ class HomeController extends Controller
 
         $category1 = BlogCategory::with(['post' => function ($query) {
             $query->latest();
-        }])->where('slug', 'how-to guides')->first();
+        }])->where('slug', 'how-to')->first();
 
         $category2 = BlogCategory::with(['post' => function ($query) {
             $query->latest();
-        }])->where('slug', 'customer-stories')->first();
+        }])->where('slug', 'client-yarn')->first();
 
         $category3 = BlogCategory::with(['post' => function ($query) {
             $query->latest();
-        }])->where('slug', 'industry-updates')->first();
+        }])->where('slug', 'industry')->first();
 
-        return view('home.pages.blogs', compact('blogCategory', 'category', 'category1', 'category2', 'category3'));
+        $breakingPost = BlogPost::where('breaking_news','=','1')->latest()->take(4)->get();;
+
+        $featuredPost = BlogPost::where('featured_news','=','1')->latest()->take(8)->get();
+
+        $latestPosts = BlogPost::where('latest_news', '=', '1')->latest()->take(8)->get();
+
+        $trendingPosts = BlogPost::where('trending_news','=','1')->latest()->take(4)->get();
+
+        $sliders = Slider::where('blog_slider', 1)->get();
+
+
+        return view('home.pages.blogs',
+        compact('blogCategory',
+                'category',
+                'category1',
+                'category2',
+                'category3',
+                'breakingPost',
+                'featuredPost',
+                'latestPosts',
+                'trendingPosts',
+                'sliders'
+            ));
     }
 }

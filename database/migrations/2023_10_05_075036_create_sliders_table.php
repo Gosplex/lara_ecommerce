@@ -17,6 +17,7 @@ return new class extends Migration
             $table->mediumText('description')->nullable();
             $table->string('image');
             $table->tinyInteger('status')->default('1')->comment('0=Inactive, 1=Active');
+            $table->tinyInteger('blog_slider')->default('1')->comment('0=Inactive, 1=Active');
             $table->timestamps();
         });
     }

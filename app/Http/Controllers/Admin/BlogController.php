@@ -107,11 +107,11 @@ class BlogController extends Controller
             'blog_post_text_1' => 'required',
             'blog_post_text_2' => 'required',
             'blog_post_text_3' => 'required',
-            'breaking_news' => 'required',
-            'featured_news' => 'required',
-            'latest_news' => 'required',
-            'trending_news' => 'required',
-            'status' => 'required',
+            'breaking_news' => 'nullable',
+            'featured_news' => 'nullable',
+            'latest_news' => 'nullable',
+            'trending_news' => 'nullable',
+            'status' => 'nullable',
         ]);
 
         if ($request->hasFile('headline_image')) {
@@ -177,11 +177,11 @@ class BlogController extends Controller
             'blog_post_text_1' => 'required',
             'blog_post_text_2' => 'required',
             'blog_post_text_3' => 'required',
-            'breaking_news' => 'required',
-            'featured_news' => 'required',
-            'latest_news' => 'required',
-            'trending_news' => 'required',
-            'status' => 'required',
+            'breaking_news' => 'nullable',
+            'featured_news' => 'nullable',
+            'latest_news' => 'nullable',
+            'trending_news' => 'nullable',
+            'status' => 'nullable',
         ]);
 
         $post = BlogPost::findOrFail($blogpost);
@@ -258,5 +258,13 @@ class BlogController extends Controller
         $post->update();
 
         return redirect()->route('admin.blogs.view')->with('success', 'Post Updated Successfully!');
+    }
+
+    function destroy(Request $request, int $blogPost)
+    {
+        $blogpost = BlogPost::findOrFail($blogPost);
+        $blogpost->delete();
+
+        return redirect()->route('admin.blogs.view')->with('success', 'Blog Post Deleted Successfully!');
     }
 }

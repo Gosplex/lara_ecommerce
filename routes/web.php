@@ -2,15 +2,24 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\Category\Index;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Home\OrderController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Home\ProfileController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Home\BlogPostController;
 use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\WishlistController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +34,7 @@ use App\Http\Controllers\Admin\SettingsController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 // Home Routes
@@ -60,6 +69,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/change-password', [ProfileController::class, 'changePswd']);
     Route::post('/change-password', [ProfileController::class, 'changePassword']);
 });
+
+// User Blog Routes
+Route::controller(BlogPostController::class)->group(function () {
+
+    Route::get('/blogs/{blog}', 'show')->name('blogs.show');
+});
+
 
 Route::get('/thank-you', [App\Http\Controllers\Home\HomeController::class, 'thankYou'])->name('thankYou');
 

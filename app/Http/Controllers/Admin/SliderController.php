@@ -34,12 +34,14 @@ class SliderController extends Controller
         }
 
         $validatedData['status'] = $request->has('status') ? 1 : 0;
+        $validatedData['blog_slider'] = $request->has('blog_slider') ? 1 : 0;
 
         Slider::create([
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
             'image' => $validatedData['image'],
             'status' => $validatedData['status'],
+            'blog_slider' => $validatedData['blog_slider'],
         ]);
 
 
@@ -77,6 +79,7 @@ class SliderController extends Controller
             'description' => $validatedData['description'],
             'image' => $validatedData['image'],
             'status' => $validatedData['status'],
+            'blog_slider' => $validatedData['blog_slider']
         ]);
 
         return redirect('admin/sliders')->with('success', 'Slider updated successfully.');

@@ -47,6 +47,13 @@
                             </label>
                         </div>
 
+                        <div class="col-md-4 mt-3">
+                            <input class="form-check-input" type="checkbox" name="blog_slider">
+                            <label class="form-check-label" for="blog_slider">
+                                Mark as Blog Slider
+                            </label>
+                        </div>
+
                         <button type="submit" class="btn btn-primary mt-3 float-end text-white">Update</button>
                     </form>
                 </div>

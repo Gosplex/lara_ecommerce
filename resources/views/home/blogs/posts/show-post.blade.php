@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Blog Post')
+@section('title', $blogpost->blog_title)
 
 @section('content')
     <!-- News With Sidebar Start -->

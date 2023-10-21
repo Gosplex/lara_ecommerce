@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+@section('title', 'Blogs')
 
 @section('content')
     <!-- Main News Slider Start -->

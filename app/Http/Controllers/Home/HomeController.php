@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::where('status', 1)->get();
+        $sliders = Slider::where('status', 1)->where('blog_slider', '0')->get();
         $trendingProducts = Product::where('trending', '1')->latest()->take(8)->get();
         $newArrivals = Product::latest()->take(8)->get();
         $featuredProducts = Product::where('featured', '1')->latest()->take(8)->get();

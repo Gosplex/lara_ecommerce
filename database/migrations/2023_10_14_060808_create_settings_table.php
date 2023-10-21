@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
             $table->string('map')->nullable();
+            $table->string('color_code')->nullable();
+            $table->string('favicon_image')->nullable();
             $table->timestamps();
         });
     }

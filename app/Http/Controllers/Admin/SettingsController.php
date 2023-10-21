@@ -50,6 +50,13 @@ class SettingsController extends Controller
                 $setting->update(['about_img_3' => $image_name]);
             }
 
+            if ($request->hasFile('favicon_image')) {
+                $image = $request->file('favicon_image');
+                $image_name = time() . '.' . $image->getClientOriginalExtension();
+                $image->move('uploads/favicon_image', $image_name);
+                $setting->favicon_image = $image_name;
+            }
+
 
             $setting->update([
                 'website_name' => $request->website_name,
@@ -73,6 +80,7 @@ class SettingsController extends Controller
                 'instagram' => $request->instagram,
                 'youtube' => $request->youtube,
                 'map' => $request->map,
+                'color_code' => $request->color_code,
             ]);
 
             return redirect()->back()->with('success', 'Settings updated successfully!');
@@ -107,6 +115,13 @@ class SettingsController extends Controller
                 $settingsData['about_img_3'] = $image_name;
             }
 
+            if ($request->hasFile('favicon_image')) {
+                $image = $request->file('favicon_image');
+                $image_name = time() . '.' . $image->getClientOriginalExtension();
+                $image->move('uploads/favicon_image', $image_name);
+                $settingsData['favicon_image'] = $image_name;
+            }
+
             $settingsData['website_name'] = $request->website_name;
             $settingsData['website_url'] = $request->website_url;
             $settingsData['title'] = $request->title;
@@ -127,6 +142,7 @@ class SettingsController extends Controller
             $settingsData['twitter'] = $request->twitter;
             $settingsData['instagram'] = $request->instagram;
             $settingsData['youtube'] = $request->youtube;
+            $settingsData['color_code'] = $request->color_code;
 
 
             Setting::create($settingsData);

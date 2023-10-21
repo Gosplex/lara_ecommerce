@@ -37,5 +37,7 @@ class Setting extends Model
         'instagram',
         'youtube',
         'map',
+        'color_code',
+        'favicon_image',
     ];
 }

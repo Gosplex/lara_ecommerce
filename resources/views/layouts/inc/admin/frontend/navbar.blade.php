@@ -1,5 +1,5 @@
 <div class="main-navbar shadow-sm sticky-top">
-    <div class="top-navbar">
+    <div class="top-navbar" style="background-color: {{ $websiteSetting->color_code }};">
         <div class="container-fluid">
             <div class="row">
                 @if (file_exists(public_path('uploads/website_details/' . $websiteSetting->logo)))

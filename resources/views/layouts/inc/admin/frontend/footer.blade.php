@@ -1,5 +1,5 @@
 <div>
-    <div class="footer-area">
+    <div class="footer-area" style="background-color: {{ $websiteSetting->color_code }};">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">

@@ -170,8 +170,8 @@
                     </table>
                 </div>
             </div>
-            <div class="border border-3 rounded">
-                <div id="donutchart" style="width: 1500px; height: 500px;"></div>
+            <div class="col-md-12">
+                <div id="donutchart" style="width: 1500px; height: 500px;" class="rounded-3"></div>
             </div>
         </div>
     </div>

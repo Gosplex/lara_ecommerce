@@ -175,11 +175,6 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/users/delete/{user}', 'destroy')->name('admin.users.destroy');
     });
 
-    Route::controller(ChartController::class)->group(function () {
-        Route::get('/loadchat', 'loadChart')->name('admin.loadChart');
-    });
-
-
     // Admin Brand Routes
 
     Route::get('/brands', App\Livewire\Admin\Brand\Index::class);

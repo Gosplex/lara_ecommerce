@@ -47,6 +47,22 @@
                                 @endif
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label>Favicon Image</label>
+                                <input type="file" class="form-control" name="favicon_image" />
+                                @if (file_exists(public_path('uploads/favicon_image/' . $setting->favicon_image)))
+                                    <div class="mt-3">
+                                        <img src="{{ asset('uploads/favicon_image/' . $setting->favicon_image) }}"
+                                            style="width: 60px; height: 60px;">
+                                    </div>
+                                @else
+                                    <h4></h4>
+                                @endif
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Website Color Code</label>
+                                <input type="text" class="form-control" value="{{ $setting->color_code }}" name="color_code" />
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <label>Meta Keywords</label>
                                 <textarea type="text" class="form-control" name="meta_keywords">{{ $setting->meta_keywords }}</textarea>
                             </div>

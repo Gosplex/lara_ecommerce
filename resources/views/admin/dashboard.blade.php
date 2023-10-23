@@ -170,7 +170,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div id="chartContainer" style="border-radius: 10px;">
                 <div id="donutchart" style="width: 1500px; height: 500px;" class="rounded-3"></div>
             </div>
         </div>
@@ -196,6 +196,10 @@
 
             var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
             chart.draw(data, options);
+
+            // Add border-radius to the chart container
+            var chartContainer = document.getElementById('donutchart');
+            chartContainer.style.borderRadius = '10px';
         }
     </script>
 @endpush

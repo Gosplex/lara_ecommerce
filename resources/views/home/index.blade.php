@@ -2,10 +2,6 @@
 
 @section('title', $websiteSetting->title)
 
-@section('favicon')
-    <link rel="shortcut icon" href="{{ asset('uploads/favicon_image/' . $websiteSetting->favicon_image) }}">
-@endsection
-
 @section('content')
 
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">

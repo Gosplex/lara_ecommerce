@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900" rel="stylesheet">
 
     {{-- Favicon --}}
-    @yield('favicon')
+    <link rel="shortcut icon" href="{{ asset('uploads/favicon_image/' . $websiteSetting->favicon_image) }}" />
+
 
     {{-- Title  --}}
     <title>@yield('title')</title>

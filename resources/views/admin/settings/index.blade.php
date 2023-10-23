@@ -60,7 +60,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Website Color Code</label>
-                                <input type="text" class="form-control" value="{{ $setting->color_code }}" name="color_code" />
+                                <input type="text" class="form-control" value="{{ $setting->color_code }}"
+                                    name="color_code" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label>Meta Keywords</label>
@@ -69,6 +70,31 @@
                             <div class="col-md-6 mb-3">
                                 <label>Meta Description</label>
                                 <textarea rows="3" class="form-control" name="meta_description">{{ $setting->meta_description }}</textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Website Header Font</label>
+                                <select name="heading_font" class="form-select">
+                                    <option disabled selected>== Select Font ==</option>
+                                    <option value="Poppins" @if ($selectedHeadingFont == 'Poppins') selected @endif>Poppins
+                                    </option>
+                                    <option value="Arial Black" @if ($selectedHeadingFont == 'Arial Black') selected @endif>Arial
+                                        Black</option>
+                                    <option value="Montserrat" @if ($selectedHeadingFont == 'Montserrat') selected @endif>Montserrat
+                                    </option>
+                                    <option value="Roboto" @if ($selectedHeadingFont == 'Roboto') selected @endif>Roboto</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Website Descripton Font</label>
+                                <select name="body_font" class="form-select">
+                                    <option disabled selected>== Select Font ==</option>
+                                    <option value="Roboto" @if ($selectedBodyFont == 'Roboto') selected @endif>Roboto</option>
+                                    <option value="Open Sans" @if ($selectedBodyFont == 'Open Sans') selected @endif>Open Sans
+                                    </option>
+                                    <option value="Lato" @if ($selectedBodyFont == 'Lato') selected @endif>Lato</option>
+                                    <option value="Georgia" @if ($selectedBodyFont == 'Georgia') selected @endif>Georgia
+                                    </option>
+                                </select>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label>Location Iframe</label>

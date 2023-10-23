@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Brand;
 use App\Models\Slider;
 use App\Models\Message;
 use App\Models\Product;
@@ -20,13 +21,16 @@ class HomeController extends Controller
         $newArrivals = Product::latest()->take(8)->get();
         $featuredProducts = Product::where('featured', '1')->latest()->take(8)->get();
         $categories = Category::all();
-        return view('home.index',
-                compact('sliders',
-                        'trendingProducts',
-                        'newArrivals',
-                        'featuredProducts',
-                        'categories'
-                    ));
+        return view(
+            'home.index',
+            compact(
+                'sliders',
+                'trendingProducts',
+                'newArrivals',
+                'featuredProducts',
+                'categories'
+            )
+        );
     }
 
     public function categories()
@@ -72,6 +76,20 @@ class HomeController extends Controller
     {
         $featuredProducts = Product::where('featured', '1')->latest()->take(8)->get();
         return view('home.pages.featured-products', compact('featuredProducts'));
+    }
+
+    function allProducts()
+    {
+        $products = Product::all();
+        $productsCount = Product::count();
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('home.pages.all-products', compact(
+            'products',
+            'categories',
+            'brands',
+            'productsCount',
+        ));
     }
 
     function productCatDisplay()
@@ -132,19 +150,21 @@ class HomeController extends Controller
             $query->latest();
         }])->where('slug', 'industry')->first();
 
-        $breakingPost = BlogPost::where('breaking_news','=','1')->latest()->take(4)->get();;
+        $breakingPost = BlogPost::where('breaking_news', '=', '1')->latest()->take(4)->get();;
 
-        $featuredPost = BlogPost::where('featured_news','=','1')->latest()->take(8)->get();
+        $featuredPost = BlogPost::where('featured_news', '=', '1')->latest()->take(8)->get();
 
         $latestPosts = BlogPost::where('latest_news', '=', '1')->latest()->take(8)->get();
 
-        $trendingPosts = BlogPost::where('trending_news','=','1')->latest()->take(4)->get();
+        $trendingPosts = BlogPost::where('trending_news', '=', '1')->latest()->take(4)->get();
 
         $sliders = Slider::where('blog_slider', 1)->get();
 
 
-        return view('home.pages.blogs',
-        compact('blogCategory',
+        return view(
+            'home.pages.blogs',
+            compact(
+                'blogCategory',
                 'category',
                 'category1',
                 'category2',
@@ -154,6 +174,7 @@ class HomeController extends Controller
                 'latestPosts',
                 'trendingPosts',
                 'sliders'
-            ));
+            )
+        );
     }
 }

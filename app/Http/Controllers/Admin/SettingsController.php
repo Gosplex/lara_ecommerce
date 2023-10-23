@@ -13,7 +13,13 @@ class SettingsController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        return view('admin.settings.index', compact('setting'));
+        $selectedHeadingFont = $setting->heading_font;
+        $selectedBodyFont = $setting->body_font;
+        return view('admin.settings.index', compact(
+                    'setting',
+                    'selectedHeadingFont',
+                    'selectedBodyFont',
+                ));
     }
 
     public function update(Request $request)
@@ -81,6 +87,8 @@ class SettingsController extends Controller
                 'youtube' => $request->youtube,
                 'map' => $request->map,
                 'color_code' => $request->color_code,
+                'body_font' => $request->input('body_font'),
+                'heading_font' => $request->input('heading_font'),
             ]);
 
             return redirect()->back()->with('success', 'Settings updated successfully!');
@@ -143,6 +151,8 @@ class SettingsController extends Controller
             $settingsData['instagram'] = $request->instagram;
             $settingsData['youtube'] = $request->youtube;
             $settingsData['color_code'] = $request->color_code;
+            $settingsData['heading_font'] = $request->input('heading_font');
+            $settingsData['body_font'] = $request->input('body_font');
 
 
             Setting::create($settingsData);

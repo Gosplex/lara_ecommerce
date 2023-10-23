@@ -46,6 +46,7 @@ Route::controller(App\Http\Controllers\Home\HomeController::class)->group(functi
     Route::get('/collections/{category}', 'products')->name('products');
     Route::get('/collections/{category}/{product}', 'productView')->name('productView');
     Route::get('/new-arrivals', 'newArrivals')->name('newArrivals');
+    Route::get('/all-products', 'allProducts')->name('allProducts');
     Route::get('/featured-products', 'featuredProducts')->name('search');
     Route::get('/home-appliances', 'productCatDisplay')->name('productCatDisplay');
     Route::get('/search', 'search')->name('search');

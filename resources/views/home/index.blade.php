@@ -12,10 +12,10 @@
                     <img src="{{ asset("$sliderItem->image") }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <div class="custom-carousel-content">
-                            <h1>
+                            <h1 style="font-family: '{{$websiteSetting->heading_font}}' ">
                                 {{ $sliderItem->title }}
                             </h1>
-                            <p>
+                            <p style="font-family: '{{$websiteSetting->body_font}}' ">
                                 {{ $sliderItem->description }}
                             </p>
                             <div>
@@ -42,9 +42,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
-                    <h4>Welcome to Majestic Stores 👋</h4>
+                    <h4 style="font-family: '{{$websiteSetting->heading_font}}' ">Welcome to Majestic Stores 👋</h4>
                     <div class="underline mx-auto"></div>
-                    <p> Your gateway to an unparalleled shopping experience. We believe in making every visit a regal
+                    <p style="font-family: '{{$websiteSetting->body_font}}' "> Your gateway to an unparalleled shopping experience. We believe in making every visit a regal
                         journey, where you are treated like royalty. Explore our aisles and discover a world of premium
                         products, unmatched service, and the grandeur of convenience. Join us on a majestic retail adventure
                         that goes beyond the ordinary, where your satisfaction reigns supreme.
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="mb-2">Categories</h4>
+                    <h4 class="mb-2"  style="font-family: '{{$websiteSetting->heading_font}}' ">Categories</h4>
                     <div class="underline"></div>
                     <div class="mb-3"></div>
                 </div>
@@ -74,7 +74,7 @@
                                         </a>
                                     </div>
                                     <div class="product-card-body">
-                                        <h4 class="product-name text-center">
+                                        <h4 class="product-name text-center"  style="font-family: '{{$websiteSetting->body_font}}' ">
                                             <a href="{{ url('/collections/' . $category->slug) }}">
                                                 {{ $category->name }}
                                             </a>
@@ -93,7 +93,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="mb-2">Trending Products</h4>
+                    <h4 class="mb-2" style="font-family: '{{$websiteSetting->heading_font}}' ">Trending Products</h4>
                     <div class="underline"></div>
                     <div class="mb-3"></div>
                 </div>
@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="product-card-body">
                                         <p class="product-brand">{{ $productItem->brand }}</p>
-                                        <h5 class="product-name">
+                                        <h5 class="product-name" style="font-family: '{{$websiteSetting->body_font}}' ">
                                             <a href="">
                                                 {{ $productItem->name }}
                                             </a>
@@ -135,7 +135,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="mb-2">New Arrivals
+                    <h4 class="mb-2" style="font-family: '{{$websiteSetting->heading_font}}' ">New Arrivals
                         <a href="{{ url('/new-arrivals') }}" class="btn btn-warning float-end">View More</a>
                     </h4>
                     <div class="underline"></div>
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="product-card-body">
                                         <p class="product-brand">{{ $productItem->brand }}</p>
-                                        <h5 class="product-name">
+                                        <h5 class="product-name" style="font-family: '{{$websiteSetting->body_font}}' ">
                                             <a href="">
                                                 {{ $productItem->name }}
                                             </a>
@@ -179,7 +179,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="mb-2">Featured Products
+                    <h4 class="mb-2" style="font-family: '{{$websiteSetting->heading_font}}' ">Featured Products
                         <a href="{{ url('/featured-products') }}" class="btn btn-warning float-end">View More</a>
                     </h4>
                     <div class="underline"></div>
@@ -200,7 +200,7 @@
                                     </div>
                                     <div class="product-card-body">
                                         <p class="product-brand">{{ $productItem->brand }}</p>
-                                        <h5 class="product-name">
+                                        <h5 class="product-name" style="font-family: '{{$websiteSetting->body_font}}' ">
                                             <a href="">
                                                 {{ $productItem->name }}
                                             </a>
@@ -224,8 +224,8 @@
         <div class="container py-5">
             <div class="row h-100 align-items-center py-5">
                 <div class="col-lg-6">
-                    <h1 class="display-4">{{ $websiteSetting->about_text_1 }}</h1>
-                    <p class="lead text-muted">
+                    <h1 class="display-4" style="font-family: '{{$websiteSetting->heading_font}}' ">{{ $websiteSetting->about_text_1 }}</h1>
+                    <p class="lead text-muted" style="font-family: '{{$websiteSetting->body_font}}' ">
                         {{ $websiteSetting->long_text_1 }}
                     </p>
                 </div>
@@ -239,8 +239,8 @@
         <div class="container py-5">
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 order-2 order-lg-1"><i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
-                    <h2 class="font-weight-light">{{ $websiteSetting->about_text_2 }}</h2>
-                    <p class="font-italic text-muted mb-4">{{ $websiteSetting->long_text_2 }}</p><a href="#"
+                    <h2 class="font-weight-light" style="font-family: '{{$websiteSetting->heading_font}}' ">{{ $websiteSetting->about_text_2 }}</h2>
+                    <p class="font-italic text-muted mb-4" style="font-family: '{{$websiteSetting->body_font}}' ">{{ $websiteSetting->long_text_2 }}</p><a href="#"
                         class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
                 </div>
                 <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img
@@ -251,8 +251,8 @@
                 <div class="col-lg-5 px-5 mx-auto"><img src="https://bootstrapious.com/i/snippets/sn-about/img-2.jpg"
                         alt="" class="img-fluid mb-4 mb-lg-0"></div>
                 <div class="col-lg-6"><i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
-                    <h2 class="font-weight-light">{{ $websiteSetting->about_text_3 }}</h2>
-                    <p class="font-italic text-muted mb-4">{{ $websiteSetting->long_text_3 }}</p><a href="#"
+                    <h2 class="font-weight-light" style="font-family: '{{$websiteSetting->heading_font}}' ">{{ $websiteSetting->about_text_3 }}</h2>
+                    <p class="font-italic text-muted mb-4" style="font-family: '{{$websiteSetting->body_font}}' ">{{ $websiteSetting->long_text_3 }}</p><a href="#"
                         class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
                 </div>
             </div>
@@ -263,8 +263,8 @@
         <div class="container py-5">
             <div class="row mb-4">
                 <div class="col-lg-5">
-                    <h2 class="display-4 font-weight-light">Our team</h2>
-                    <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <h2 class="display-4 font-weight-light" style="font-family: '{{$websiteSetting->heading_font}}' ">Our team</h2>
+                    <p class="font-italic text-muted" style="font-family: '{{$websiteSetting->body_font}}' ">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 </div>
             </div>
 

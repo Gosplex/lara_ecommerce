@@ -39,5 +39,7 @@ class Setting extends Model
         'map',
         'color_code',
         'favicon_image',
+        'heading_font',
+        'body_font',
     ];
 }

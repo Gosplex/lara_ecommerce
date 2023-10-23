@@ -36,10 +36,6 @@
                             <div class="numbers">{{ $totalOrder }}</div>
                             <div class="cardName">Total Orders</div>
                         </div>
-
-                        <div class="iconBx">
-                            <ion-icon class="admin-icon" name="list"></ion-icon>
-                        </div>
                     </div>
                 </a>
 
@@ -48,10 +44,6 @@
                         <div>
                             <div class="numbers">{{ $todayOrder }}</div>
                             <div class="cardName">Today Orders</div>
-                        </div>
-
-                        <div class="iconBx">
-                            <ion-icon class="admin-icon" name="cart-outline"></ion-icon>
                         </div>
                     </div>
                 </a>
@@ -62,10 +54,6 @@
                             <div class="numbers">{{ $thisMonthOrder }}</div>
                             <div class="cardName">Monthly Orders</div>
                         </div>
-
-                        <div class="iconBx">
-                            <ion-icon class="admin-icon" name="pricetags"></ion-icon>
-                        </div>
                     </div>
                 </a>
 
@@ -74,10 +62,6 @@
                         <div>
                             <div class="numbers">₹{{ $totalEarnings }}</div>
                             <div class="cardName">Monthly Earnings</div>
-                        </div>
-
-                        <div class="iconBx">
-                            <ion-icon class="admin-icon" name="cash-outline"></ion-icon>
                         </div>
                     </div>
                 </a>

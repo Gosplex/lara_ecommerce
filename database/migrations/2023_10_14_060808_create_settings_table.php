@@ -39,6 +39,9 @@ return new class extends Migration
             $table->string('map')->nullable();
             $table->string('color_code')->nullable();
             $table->string('favicon_image')->nullable();
+            $table->string('favicon_image')->nullable();
+            $table->string('heading_font')->nullable();
+            $table->string('body_font')->nullable();
             $table->timestamps();
         });
     }
